@@ -279,3 +279,62 @@ None. Settled during brainstorming: Bun + Turborepo, not Bun alone; Vitest, not
 `bun test`; several apps rather than micro-frontends; new repos only, with
 brownfield commands still working on existing ones; one Storybook in the UI
 package.
+
+---
+
+## 10. Amendments (2026-09-28, after implementation)
+
+Sections 1–9 record the design as approved. This section records where the
+shipped plugin differs and why. A spec is a record of decisions, so it is
+amended rather than rewritten — the reasoning at the time is part of its value.
+
+### Scope added at the user's request, mid-execution
+
+**Templates normalized.** Grouped by what each template produces rather than by
+ad-hoc name: `workspace/`, `app/`, `module/`,
+`package/{generic,ui,testing,e2e,module-kit}`, `config/{eslint,typescript,test}`,
+`overlay/storybook`. The `overlay` grouping is the meaningful one: Storybook
+config is applied *into* an existing package, and sitting it beside real
+packages implied it was one.
+
+**A `modules/` layer** between apps and packages — the Odoo idea that the unit
+of modularity is the business capability. A module declares its dependencies,
+permissions and navigation in `module.config.ts`, so apps compose modules
+rather than importing their internals; `@repo/module-kit` resolves load order,
+names cycles, and filters navigation by permission. Adds
+`/monorepo-stack:add-module` — six commands, not the five in §5.
+
+**Registry-based version resolution.** `init` resolves catalog versions from
+npm rather than shipping the template author's pins, which go stale within
+weeks and silently. Holds the pinned major unless `--latest`.
+
+**Twelve reference files, not eight.** Added `09-code-quality`,
+`10-app-architecture`, `11-patterns`, `12-modules`. The first three cover the
+code inside the files rather than where the files go.
+
+### Forced by reality
+
+**Root scripts use `bun run --filter`, not Turbo.** Turborepo cannot spawn Bun
+on Windows — reproduced on 2.3.4, 2.5.8 and 2.11.5, while the same repository
+with npm declared runs tasks fine. `turbo.json` and `turbo:*` scripts still
+ship for macOS, Linux and CI. §4's "scripts delegate to turbo" is superseded.
+
+**`@storybook/react-vite`, not the Next framework.** Storybook 9.1's Next
+preset calls an SWC API that Next 16 removed. It is also the better design: a
+UI package is framework-agnostic React and has no reason to pull in Next's
+build pipeline.
+
+**`plugin.json` omits `skills` and `commands`**, contrary to §5. No official
+plugin declares them when the directories are at their default locations.
+
+### The verification criteria in §8 were insufficient
+
+§8 named `bun install`, `build`, `test` and `storybook:build`. That set passed
+while **every generated module failed `check-types`** and **ESLint was absent
+from every manifest** — because Vitest strips types without checking them and
+`next build` only typechecks the app, never `modules/*` or `packages/*`.
+
+The acceptance test now runs `check-types` and `lint` as well. A whole-branch
+review found this, along with a broken Dockerfile and a path-traversal hole in
+`add-app`; all are fixed and covered by `scripts/hardening.test.mjs`, which
+reproduces each finding.
