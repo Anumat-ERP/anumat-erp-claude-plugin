@@ -23,6 +23,21 @@ const REF_PATTERN = /(?:reference|patterns|systems)\/[A-Za-z0-9._-]+\.md/g;
 /** Directories inside a skill that hold routed content files. */
 const CONTENT_DIRS = ['reference', 'patterns', 'systems'];
 
+/**
+ * Vocabulary that belongs to the frontend-design skill, not this one.
+ * Substring match, case-insensitive, over the design-stack skill only.
+ */
+const AESTHETIC_TERMS = [
+  'premium feel',
+  'modern look',
+  'beautiful',
+  'sleek',
+  'eye-catching',
+  'visually stunning',
+  'gorgeous',
+  'aesthetically pleasing',
+];
+
 /** @type {string[]} */
 const ERRORS = [];
 /** @type {string[]} */
@@ -229,9 +244,38 @@ function checkSkills(pluginDirs) {
   }
 }
 
+/**
+ * The design-stack skill constrains structure, not appearance. Aesthetic
+ * vocabulary here would contradict the frontend-design skill when both are
+ * loaded into the same context.
+ */
+function checkAesthetics(pluginDirs) {
+  const check = 'aesthetics';
+  for (const pdir of pluginDirs) {
+    const skillDir = join(pdir, 'skills', 'design-stack');
+    if (!isDir(skillDir)) continue;
+    const files = [join(skillDir, 'SKILL.md'), ...CONTENT_DIRS.flatMap((d) => mdFiles(join(skillDir, d)))];
+    for (const md of files) {
+      if (!existsSync(md)) continue;
+      const lowered = readFileSync(md, 'utf8').toLowerCase();
+      for (const term of AESTHETIC_TERMS) {
+        if (lowered.includes(term)) {
+          fail(
+            check,
+            `${rel(md)} contains aesthetic term "${term}" — ` +
+              `appearance guidance belongs to the frontend-design skill`,
+          );
+        }
+      }
+    }
+  }
+  if (clean(check)) ok(check);
+}
+
 function main() {
   const pluginDirs = checkManifests();
   checkSkills(pluginDirs);
+  checkAesthetics(pluginDirs);
 
   for (const line of ERRORS) console.log(line);
   if (ERRORS.length) {
