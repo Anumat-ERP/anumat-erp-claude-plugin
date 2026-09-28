@@ -1,0 +1,27 @@
+{
+  "name": "@repo/testing",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./render": "./src/render/render.tsx",
+    "./msw/server": "./src/msw/server.ts",
+    "./setup/msw": "./src/setup/msw.ts"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@types/react": "catalog:",
+    "typescript": "catalog:",
+    "@testing-library/jest-dom": "catalog:testing"
+  },
+  "peerDependencies": {
+    "react": "catalog:",
+    "react-dom": "catalog:"
+  },
+  "dependencies": {
+    "@testing-library/react": "catalog:testing",
+    "@testing-library/jest-dom": "catalog:testing",
+    "@testing-library/user-event": "catalog:testing",
+    "msw": "catalog:testing"
+  }
+}
