@@ -20,6 +20,18 @@
         "email": "thorchamrong.dev@gmail.com"
       },
       "tags": ["design", "ui", "ux", "patterns", "design-systems", "accessibility"]
+    },
+    {
+      "name": "monorepo-stack",
+      "description": "Scaffold and maintain a Bun + Turborepo monorepo: several apps, shared packages, and Storybook as a first-class layer, with the conventions to extend it correctly.",
+      "source": "./plugins/monorepo-stack",
+      "category": "productivity",
+      "version": "0.1.0",
+      "author": {
+        "name": "Chamrong Thor",
+        "email": "thorchamrong.dev@gmail.com"
+      },
+      "tags": ["monorepo", "bun", "turborepo", "storybook", "scaffolding", "nextjs"]
     }
   ]
 }

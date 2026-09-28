@@ -1,0 +1,4 @@
+[install]
+# Peer dependencies are installed by default in Bun; kept explicit so the
+# intent survives a future default change.
+peer = true

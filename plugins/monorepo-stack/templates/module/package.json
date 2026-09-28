@@ -1,0 +1,44 @@
+{
+  "name": "@repo/module-__MODULE_NAME__",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./index.ts",
+    "./manifest": "./module.config.ts",
+    "./ui": "./ui/index.ts"
+  },
+  "scripts": {
+    "check-types": "tsc --noEmit",
+    "test": "vitest run",
+    "test:ci": "vitest run --coverage",
+    "coverage": "vitest run --coverage",
+    "lint": "eslint ."
+  },
+  "peerDependencies": {
+    "react": "catalog:",
+    "react-dom": "catalog:"
+  },
+  "dependencies": {
+    "@repo/module-kit": "workspace:*",
+    "@repo/ui": "workspace:*",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@repo/test-config": "workspace:*",
+    "@repo/testing": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@testing-library/jest-dom": "catalog:testing",
+    "@types/react": "catalog:",
+    "@vitejs/plugin-react": "catalog:testing",
+    "@vitest/coverage-v8": "catalog:testing",
+    "jsdom": "catalog:testing",
+    "react": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:testing",
+    "@storybook/react-vite": "catalog:storybook",
+    "vite": "catalog:storybook",
+    "eslint": "catalog:",
+    "@repo/eslint-config": "workspace:*"
+  }
+}
