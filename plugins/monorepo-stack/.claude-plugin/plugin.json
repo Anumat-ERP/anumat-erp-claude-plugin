@@ -1,0 +1,10 @@
+{
+  "name": "monorepo-stack",
+  "description": "Scaffold and maintain a Bun + Turborepo monorepo: several apps, shared packages, and Storybook as a first-class layer, with the conventions to extend it correctly.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Chamrong Thor",
+    "email": "thorchamrong.dev@gmail.com"
+  },
+  "homepage": "https://github.com/thorchamrong/claude-plugins"
+}
