@@ -1,0 +1,25 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "chamrong",
+  "owner": {
+    "name": "Chamrong Thor",
+    "email": "thorchamrong.dev@gmail.com"
+  },
+  "metadata": {
+    "description": "Personal Claude Code plugins."
+  },
+  "plugins": [
+    {
+      "name": "design-stack",
+      "description": "Design research and evidence layer for UI work: canonical screen playbooks, design-system selection, and a hard gate on interface states.",
+      "source": "./plugins/design-stack",
+      "category": "design",
+      "version": "0.1.0",
+      "author": {
+        "name": "Chamrong Thor",
+        "email": "thorchamrong.dev@gmail.com"
+      },
+      "tags": ["design", "ui", "ux", "patterns", "design-systems", "accessibility"]
+    }
+  ]
+}

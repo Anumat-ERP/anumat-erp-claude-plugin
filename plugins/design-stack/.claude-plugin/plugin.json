@@ -1,0 +1,11 @@
+{
+  "name": "design-stack",
+  "description": "Design research and evidence layer for UI work: canonical screen playbooks, design-system selection, and a hard gate on interface states.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Chamrong Thor",
+    "email": "thorchamrong.dev@gmail.com"
+  },
+  "skills": "./skills/",
+  "commands": "./commands/"
+}
