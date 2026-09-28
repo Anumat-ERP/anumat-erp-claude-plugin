@@ -72,7 +72,8 @@ The source material splits into two groups, and conflating them is the trap:
 
 - **Agent-fetchable** — public documentation Claude can read on demand:
   Apple HIG, Material, Fluent, Carbon, Polaris, Primer, Atlassian, GOV.UK,
-  Laws of UX, shadcn/ui, Radix, WAI-ARIA APG.
+  Laws of UX, shadcn/ui, Radix, WAI-ARIA APG, and the public Storybooks
+  (Fluent UI, Carbon, Primer, Grafana, Adobe Spectrum, Chakra, Elastic EUI).
 - **Human-only** — login-walled, paywalled, or purely visual:
   Mobbin, Refero, Page Flows, Dribbble, Awwwards, SaaSFrame.
 
@@ -179,12 +180,21 @@ the body must never inline what a reference file already holds.
 
 ```
 BRIEF     → who, what problem, what is out of scope, what success looks like
+INVENTORY → what does this project already have? local Storybook, component
+            library, existing tokens. The house system always outranks an
+            imported one.
 EVIDENCE  → read patterns/<screen-type>.md; structure is recalled, not invented
 SYSTEM    → pick one design system and name why
 STATES    → all six enumerated; this is a gate, not advice
 BUILD     → hand aesthetics to frontend-design; structure comes from above
 REVIEW    → 10-design-review.md
 ```
+
+The INVENTORY stage exists because the most common failure of a design skill is
+importing conventions a project has already decided against. A repo with a
+Storybook has published its component inventory, its real prop surface, and its
+usage rules; reading it costs one directory listing and outranks every external
+reference in this plugin.
 
 ### Reference files
 
@@ -240,7 +250,7 @@ a distinct discipline from web SaaS, poorly served by web component defaults.
 ### `systems/` — design-system profiles
 
 `apple-hig` · `material` · `fluent` · `carbon` · `polaris` · `primer` ·
-`atlassian` · `govuk`, plus `CHOOSING.md`.
+`atlassian` · `govuk`, plus `CHOOSING.md` and `STORYBOOKS.md`.
 
 Each profile: what the system is for, its core conventions, where it is
 opinionated, where it stays silent, when to pick it, when not to, and the
@@ -262,6 +272,22 @@ for depth).
 
 Picking one is mandatory. Borrowing *conventions* is the point; visual identity
 still comes from `frontend-design`.
+
+`STORYBOOKS.md` covers component inventories, and is the INVENTORY stage's
+reference. Two halves:
+
+**The project's own Storybook, checked first.** How to detect one
+(`.storybook/`, `*.stories.*`, a `storybook` script in `package.json`), and what
+to extract: the component list is the available inventory, `args` and prop types
+are the real API, the docs pages carry usage rules and the do/don't pairs. A
+component that exists must be reused, not rebuilt — and a gap in the inventory
+is worth naming out loud before filling it.
+
+**Public Storybooks, for studying decomposition.** Fluent UI, Carbon, Primer,
+Grafana, Adobe Spectrum, Chakra, Elastic EUI, catalogued with what each is
+strong at. These are fetchable. Their value is showing how mature teams split a
+product into primitives and compose upward — `Button → Field → Form → Modal →
+Table → Page` — which is exactly the decomposition Claude otherwise guesses at.
 
 ---
 

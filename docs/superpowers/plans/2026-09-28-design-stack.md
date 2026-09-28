@@ -74,6 +74,7 @@ claude-plugins/
             ├── SKILL.md                 T7
             ├── systems/
             │   ├── CHOOSING.md          T7
+            │   ├── STORYBOOKS.md        T7
             │   ├── apple-hig.md         T7
             │   ├── material.md          T7
             │   ├── fluent.md            T7
@@ -466,9 +467,10 @@ Body — **≤ 150 lines**, in this order:
 
 1. **Title + one-paragraph framing.** Claude's UI output is generic because it *invents* structure instead of recalling it, applies one visual language to every domain, and builds only the happy path. This skill fixes the first and third by supplying evidence and a gate.
 2. **Boundary block.** A three-row table stating what this skill does *not* do and who does it: aesthetics → `frontend-design`; craft audit and polish → `impeccable`; chart colour and encoding → the `dataviz` skill. State explicitly: *when `frontend-design` is also loaded, it wins on every question of appearance; this skill only constrains structure, content order, and states.* (Review Focus item 4.)
-3. **The pipeline** as a fenced block, verbatim from spec §6, with one line of gloss per stage.
+3. **The pipeline** as a fenced block, verbatim from spec §6 — seven stages, `BRIEF → INVENTORY → EVIDENCE → SYSTEM → STATES → BUILD → REVIEW` — with one line of gloss per stage.
 4. **Stage detail, one short paragraph each:**
    - BRIEF — four questions: who, what problem, what is explicitly out of scope, what observable change means success. For anything beyond a single component, run `/design-stack:brief` instead of improvising.
+   - INVENTORY — check what the project already has before importing anything. Look for `.storybook/`, `*.stories.*`, a `storybook` script in `package.json`, an existing component directory, or a token file. If a Storybook exists, read its component list: that is the available inventory and the real prop surface. A component that exists gets reused, not rebuilt. The house system outranks every external reference in this plugin. Procedure in `systems/STORYBOOKS.md`.
    - EVIDENCE — read `patterns/<screen-type>.md` from the `design-evidence` skill *before* proposing structure. If no playbook matches, say so out loud, name the nearest structural analogue, and use it — never invent silently. (Review Focus item 3.)
    - SYSTEM — pick exactly one from `systems/CHOOSING.md` and state why in one sentence. Borrowing conventions, not visual identity.
    - STATES — the gate. All six named, in order, each answered concretely for this screen. Definitions live in `patterns/states.md`.
@@ -635,6 +637,8 @@ Then one shared section, **Interactive states**, listing the seven every interac
 
 Note that these seven are per-*control* states and are distinct from the six per-*screen* states in `patterns/states.md`. Conflating them is a common error.
 
+Add a short **Decomposition** section: how to decide where one component ends and the next begins, the composition ladder `primitive → field → composite → pattern → page`, and the rule that a component earns its existence by being used in two places or by encapsulating a decision. Point at `systems/STORYBOOKS.md` for reading a real inventory rather than reasoning about it in the abstract.
+
 `## Common failures`.
 
 - [ ] **Step 4: Write `05-forms.md`**
@@ -735,7 +739,9 @@ Specify the output format: findings ordered by severity, each naming file, line,
 
 Two top-level sections, and the split is the point of the file.
 
-**Agent-fetchable** — Claude may read these directly. Grouped: design systems (Apple HIG, Material, Fluent, Carbon, Polaris, Primer, Atlassian, GOV.UK) · principles (Laws of UX, Nielsen Norman) · components (shadcn/ui, Radix, React Aria, Base UI) · accessibility (WAI-ARIA APG, WebAIM, A11Y Project) · motion (Motion, Transitions.dev) · colour, type, icons (Type Scale, Realtime Colors, Coolors, Lucide, Phosphor, Iconify).
+**Agent-fetchable** — Claude may read these directly. Grouped: design systems (Apple HIG, Material, Fluent, Carbon, Polaris, Primer, Atlassian, GOV.UK) · public Storybooks (Storybook Showcase, plus Fluent UI, Carbon, Primer, Grafana, Adobe Spectrum, Chakra, Elastic EUI — cross-reference `systems/STORYBOOKS.md`) · principles (Laws of UX, Nielsen Norman) · components (shadcn/ui, Radix, React Aria, Base UI) · accessibility (WAI-ARIA APG, WebAIM, A11Y Project) · motion (Motion, Transitions.dev) · colour, type, icons (Type Scale, Realtime Colors, Coolors, Lucide, Phosphor, Iconify).
+
+Head the fetchable section with the note that the project's *own* Storybook, if it has one, outranks everything listed here.
 
 **Human-only — Claude cannot open these.** Mobbin, Refero, Page Flows, Screenlane, UX Archive, SaaSFrame, Dribbble, Behance, Awwwards, Godly, Land-book, SiteInspire. Each with one line on what it is good for.
 
@@ -763,6 +769,7 @@ Validator green: all 11 reference files present and routed."
 **Files:**
 - Create: `plugins/design-stack/skills/design-evidence/SKILL.md`
 - Create: `plugins/design-stack/skills/design-evidence/systems/CHOOSING.md`
+- Create: `plugins/design-stack/skills/design-evidence/systems/STORYBOOKS.md`
 - Create: `plugins/design-stack/skills/design-evidence/systems/{apple-hig,material,fluent,carbon,polaris,primer,atlassian,govuk}.md`
 - Modify: `scripts/validate.py` — add check `orphans`
 
@@ -832,15 +839,35 @@ Body — **≤ 80 lines**. It is a router, not a reference:
 1. One paragraph: this skill holds distilled structure from shipped products. Reading the playbook before proposing a layout is the difference between recalling and inventing.
 2. **Choosing a playbook** — a table mapping request phrasing to `patterns/<file>.md`, all ten rows.
 3. **When no playbook matches** — the fallback procedure, stated as three steps: say out loud that no playbook covers this; name the nearest structural analogue and why; use it, flagging where it does not fit. Never invent silently. (Review Focus item 3.)
-4. **Choosing a design system** — point at `systems/CHOOSING.md`; state that picking one is mandatory and the choice gets one sentence of justification.
-5. **The playbook shape** — the six fixed sections, so a reader knows what they are getting.
-6. **Boundary** — appearance is `frontend-design`; this skill is structure.
+4. **Check the project first** — before any external evidence, point at `systems/STORYBOOKS.md` Part 1. If the repo has a Storybook or component package, its inventory outranks every profile in this skill.
+5. **Choosing a design system** — point at `systems/CHOOSING.md`; state that picking one is mandatory and the choice gets one sentence of justification.
+6. **The playbook shape** — the six fixed sections, so a reader knows what they are getting.
+7. **Boundary** — appearance is `frontend-design`; this skill is structure.
 
 - [ ] **Step 4: Write `systems/CHOOSING.md`**
 
 The domain→system table from spec §7, then for each row one paragraph on *why* that pairing holds, then a **Tie-breakers** section: what to do when two apply (pick the one matching the primary user's daily environment), when the project already has a system (use it; these profiles then serve as a cross-check), and when the product spans platforms (choose per surface, keep terminology shared).
 
 Link all eight profiles as `systems/<name>.md` so `refs` and `orphans` see them.
+
+- [ ] **Step 4b: Write `systems/STORYBOOKS.md`**
+
+The INVENTORY stage's reference. Two halves, in this order — the order is the point.
+
+**Part 1 — the project's own Storybook, checked first.**
+- Detection: `.storybook/` directory, `*.stories.{ts,tsx,js,jsx,svelte,vue}` files, a `storybook` script in `package.json`, or a `packages/ui`-style component package.
+- What to extract, and why each matters: the **component list** is the available inventory (build nothing that already exists); **`args` and prop types** are the real API, which is often narrower than the docs suggest; **docs pages** carry usage rules and do/don't pairs that encode decisions the team already argued about; **story variants** enumerate the states the team considers real.
+- The rule: a component that exists gets reused. A gap in the inventory gets named out loud before it is filled, because adding to someone's design system is a decision, not an implementation detail.
+- Why this outranks everything else in this plugin: an imported convention that contradicts the house system is worse than no convention at all.
+
+**Part 2 — public Storybooks, for studying decomposition.**
+Table of Fluent UI, Carbon, Primer, Grafana, Adobe Spectrum, Chakra, Elastic EUI — each with its URL and what it is strongest for inspecting. Marked fetchable.
+
+State the reason this category earns its place: a Storybook shows how a mature team *splits* a product into primitives and composes upward — `Button → Field → Form → Modal → Table → Page`. That decomposition is normally invisible in a finished screenshot, and it is exactly what Claude otherwise guesses at.
+
+Close with **how to read one efficiently**: the sidebar tree is the inventory, the Docs tab holds the rules, the Controls panel holds the real API surface. Read the tree before any individual story.
+
+Link from `CHOOSING.md` and from `design-evidence/SKILL.md` as `systems/STORYBOOKS.md` so `refs` and `orphans` both see it.
 
 - [ ] **Step 5: Write the eight profiles**
 
@@ -1077,7 +1104,7 @@ Sections: what this repo is (a personal Claude Code marketplace) · install inst
 
 - [ ] **Step 2: Write `plugins/design-stack/README.md`**
 
-Sections: the problem it solves, in three sentences · the three-plugin division of labour table from spec §3 · the pipeline · what ships (2 skills, 21 reference/playbook/profile files, 4 commands) · the four commands with example invocations · the six states, listed · the honest note on login-walled sources · how to extend it (add a playbook, add a system profile, and that both must be routed from the owning `SKILL.md` or `orphans` will fail).
+Sections: the problem it solves, in three sentences · the three-plugin division of labour table from spec §3 · the pipeline · what ships (2 skills, 30 reference/playbook/profile files, 4 commands) · the four commands with example invocations · the six states, listed · the honest note on login-walled sources · how to extend it (add a playbook, add a system profile, and that both must be routed from the owning `SKILL.md` or `orphans` will fail).
 
 - [ ] **Step 3: Run the full validator one last time**
 
