@@ -12,7 +12,11 @@ import { fileURLToPath } from 'node:url';
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 
 /** Body-length caps, in lines. Progressive disclosure: detail lives in reference files. */
-const SKILL_BODY_MAX = { 'design-stack': 150, 'design-evidence': 80 };
+const SKILL_BODY_MAX = {
+  'design-stack': 150,
+  'design-evidence': 80,
+  'monorepo-stack': 120,
+};
 
 /**
  * The one path form allowed in skill and command content.
