@@ -6,6 +6,5 @@
     "name": "Chamrong Thor",
     "email": "thorchamrong.dev@gmail.com"
   },
-  "skills": "./skills/",
-  "commands": "./commands/"
+  "homepage": "https://github.com/thorchamrong/claude-plugins"
 }
