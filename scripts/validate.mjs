@@ -229,10 +229,16 @@ function checkSkills(pluginDirs) {
         );
       }
 
-      const refs = [...new Set(body.match(REF_PATTERN) ?? [])].sort();
-      for (const ref of refs) {
-        if (!skillDirs.some((d) => existsSync(join(d, ref)))) {
-          fail(refCheck, `${rel(skillMd)} routes to ${ref}, which exists in no skill of this plugin`);
+      // Outbound references, from the skill body AND from its content files:
+      // a dangling link inside a reference file strands the reader just as
+      // surely as one in SKILL.md.
+      const sources = [skillMd, ...CONTENT_DIRS.flatMap((d) => mdFiles(join(skillDir, d)))];
+      for (const src of sources) {
+        const text = src === skillMd ? body : readFileSync(src, 'utf8');
+        for (const ref of [...new Set(text.match(REF_PATTERN) ?? [])].sort()) {
+          if (!skillDirs.some((d) => existsSync(join(d, ref)))) {
+            fail(refCheck, `${rel(src)} routes to ${ref}, which exists in no skill of this plugin`);
+          }
         }
       }
     }
@@ -272,10 +278,55 @@ function checkAesthetics(pluginDirs) {
   if (clean(check)) ok(check);
 }
 
+/**
+ * A content file nothing routes to is invisible at runtime: Claude never
+ * learns it exists, so the plugin looks like it is working while having no
+ * evidence to read. Mentions count from any skill in the plugin.
+ */
+function checkOrphans(pluginDirs) {
+  const check = 'orphans';
+  for (const pdir of pluginDirs) {
+    const skillsRoot = join(pdir, 'skills');
+    if (!isDir(skillsRoot)) continue;
+    const skillDirs = subdirs(skillsRoot);
+
+    const mentioned = new Set();
+    for (const skillDir of skillDirs) {
+      const corpus = [
+        join(skillDir, 'SKILL.md'),
+        ...CONTENT_DIRS.flatMap((d) => mdFiles(join(skillDir, d))),
+      ];
+      for (const md of corpus) {
+        if (!existsSync(md)) continue;
+        for (const ref of readFileSync(md, 'utf8').match(REF_PATTERN) ?? []) {
+          mentioned.add(ref);
+        }
+      }
+    }
+
+    for (const skillDir of skillDirs) {
+      for (const sub of CONTENT_DIRS) {
+        for (const md of mdFiles(join(skillDir, sub))) {
+          const key = `${sub}/${basename(md)}`;
+          if (!mentioned.has(key)) {
+            fail(
+              check,
+              `${rel(md)} is never referenced by any skill in this plugin — ` +
+                `unroutable files are invisible at runtime`,
+            );
+          }
+        }
+      }
+    }
+  }
+  if (clean(check)) ok(check);
+}
+
 function main() {
   const pluginDirs = checkManifests();
   checkSkills(pluginDirs);
   checkAesthetics(pluginDirs);
+  checkOrphans(pluginDirs);
 
   for (const line of ERRORS) console.log(line);
   if (ERRORS.length) {
