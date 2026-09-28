@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    # Weekly: the scaffold resolves versions from npm, so it can break without a commit here.
+    - cron: '0 3 * * 1'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Marketplace and plugin structure
+        run: node scripts/validate.mjs
+      - name: monorepo-stack unit tests
+        run: node plugins/monorepo-stack/scripts/test.mjs
+
+  acceptance:
+    # Generates a real workspace and runs install, build, type-check, lint and test in it.
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.11
+      - run: node plugins/monorepo-stack/scripts/acceptance.mjs

@@ -1,38 +1,22 @@
 ---
-description: Report where an existing monorepo deviates from the monorepo-stack conventions. Read-only.
-argument-hint: [path to the workspace]
+description: Report how a workspace deviates from the monorepo-stack conventions. Read-only.
+argument-hint: [--cwd <workspace>] [--json]
 ---
 
-Audit: **$ARGUMENTS** — or the current workspace if no path was given.
+Audit: **$ARGUMENTS** (defaults to the current workspace).
 
-## Run
+This command never writes. Run:
 
-    node "${CLAUDE_PLUGIN_ROOT}/scripts/audit.mjs" --cwd <workspace root>
+```
+node "${CLAUDE_PLUGIN_ROOT}/scripts/audit.mjs" [--cwd <workspace>] [--json]
+```
 
-**This never writes.** Say so when reporting. It also always exits 0 — an
-audit is information, not a gate, and a report that fails a build gets
-disabled rather than acted on.
+Then explain the findings in order of cost to fix later, highest first. For
+each, name the convention it breaks and the reference file that explains it:
 
-## Report
+- workspace and catalogs: `${CLAUDE_PLUGIN_ROOT}/skills/monorepo-stack/reference/01-workspace.md`
+- task wiring: `${CLAUDE_PLUGIN_ROOT}/skills/monorepo-stack/reference/02-turborepo.md`
+- app layout: `${CLAUDE_PLUGIN_ROOT}/skills/monorepo-stack/reference/03-app-anatomy.md`
+- adopting in an existing repo: `${CLAUDE_PLUGIN_ROOT}/skills/monorepo-stack/reference/08-brownfield.md`
 
-Group findings by severity, critical first. For each one, say **what it
-costs**, not only which rule it breaks — a rule citation with no consequence
-attached reads as pedantry and gets ignored:
-
-- `port-collision` — two apps cannot run at once, and the failure is confusing
-  because the second one appears to start.
-- `no-lockfile` — installs are not reproducible; CI and local diverge silently.
-- `module-missing-dependency` — a module declares something that is not
-  installed, so composition breaks at runtime rather than at install.
-- `no-storybook` — the component inventory is not browsable, components get
-  rebuilt because nobody knew they existed, and design tooling has nothing to
-  read.
-- `internal-not-workspace` — a version range instead of `workspace:*` can
-  resolve to a published copy rather than the local one.
-
-## Then stop
-
-Offer to fix the top finding as a separate, explicit step. Never fix anything
-as part of the audit: the value of a read-only tool is that it can be run on
-anything without thinking about it first, and that is lost the moment it
-starts writing.
+Do not change anything unless the user asks you to fix a specific finding.

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Structural validator for the chamrong plugin marketplace.
+ * Structural validator for the anumat-erp plugin marketplace.
  *
  * Run from anywhere:  node scripts/validate.mjs
  * Exit 0 = all checks pass. Exit 1 = at least one failure.
@@ -78,11 +78,18 @@ const subdirs = (path) =>
         .sort()
     : [];
 
+/** Every .md file under `path`, nested folders included, sorted. A content
+ *  file in a subfolder is still content: skipping it hid broken refs and orphans. */
 const mdFiles = (path) =>
   isDir(path)
     ? readdirSync(path, { withFileTypes: true })
-        .filter((d) => d.isFile() && d.name.endsWith('.md'))
-        .map((d) => join(path, d.name))
+        .flatMap((d) =>
+          d.isDirectory()
+            ? mdFiles(join(path, d.name))
+            : d.isFile() && d.name.endsWith('.md')
+              ? [join(path, d.name)]
+              : [],
+        )
         .sort()
     : [];
 
@@ -115,8 +122,8 @@ function checkManifests() {
       fail(check, `marketplace.json missing required field '${field}'`);
     }
   }
-  if (market.name !== 'chamrong') {
-    fail(check, `marketplace name must be 'chamrong', got ${JSON.stringify(market.name)}`);
+  if (market.name !== 'anumat-erp') {
+    fail(check, `marketplace name must be 'anumat-erp', got ${JSON.stringify(market.name)}`);
   }
 
   for (const entry of market.plugins ?? []) {

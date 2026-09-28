@@ -8,7 +8,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
  * generated repo looks current and is two minors behind on everything.
  *
  * What the template DOES own is the major. "Newest" and "works together" are
- * different questions: Storybook 9 with Next 16 with Vitest 3 is a combination
+ * different questions: Storybook 10 with Next 16 with Vitest 4 is a combination
  * that has been tested, and resolving each dependency to its own independent
  * latest is how you get a workspace that installs but does not build.
  */

@@ -1,23 +1,26 @@
-# chamrong
+# anumat-erp-claude-plugin
 
-A personal Claude Code plugin marketplace. One repo, many plugins.
+The Claude Code plugin marketplace for the Anumat team. One repo, several
+plugins, used to build the Anumat repos (`anumat-erp-web`, the Storybook, the
+prototypes) the same way every time.
 
 ## Install
 
 ```
-/plugin marketplace add <path to this repo>
-/plugin install design-stack@chamrong
+/plugin marketplace add Anumat-ERP/anumat-erp-claude-plugin
+/plugin install monorepo-stack@anumat-erp
+/plugin install design-stack@anumat-erp
 ```
 
-Installing the marketplace once makes every plugin in it available; install
-each plugin you want by name.
+Adding the marketplace once makes every plugin in it available; install each
+plugin you want by name. A local clone works too: `/plugin marketplace add <path>`.
 
 ## Plugins
 
 | Plugin | What it does | Install |
 |---|---|---|
-| **design-stack** | The research and evidence layer for UI work: canonical screen playbooks, design-system selection, and a hard gate on interface states. | `/plugin install design-stack@chamrong` |
-| **monorepo-stack** | Scaffolds and maintains a Bun + Turborepo monorepo: apps, business capability modules, shared packages, and Storybook as a first-class layer. | `/plugin install monorepo-stack@chamrong` |
+| **design-stack** | The research and evidence layer for UI work: canonical screen playbooks, design-system selection, and a hard gate on interface states. | `/plugin install design-stack@anumat-erp` |
+| **monorepo-stack** | Scaffolds and maintains a Bun + Turborepo monorepo: apps, business capability modules, shared packages, and Storybook as a first-class layer. | `/plugin install monorepo-stack@anumat-erp` |
 
 The two are designed to meet: `monorepo-stack` creates `packages/ui` and its
 Storybook; `design-stack` reads them to learn what components already exist
@@ -77,12 +80,25 @@ Run it before every commit that touches a plugin.
 ### Known limits
 
 The validator is a tripwire, not a proof. It does not catch aesthetic guidance
-phrased without a listed term, content files in nested subdirectories
-(`mdFiles` is not recursive), or a very long single line inside a skill body —
-`length` counts lines, not bytes. Two checks are keyed to this plugin by name:
+phrased without a listed term, or a very long single line inside a skill body —
+`length` counts lines, not bytes. Content folders are scanned recursively. Two checks are keyed to this plugin by name:
 `length` caps only the two known skills, and `contrast` reads only
 `design-stack`'s token file. A second plugin in this marketplace gets the other
 six.
+
+## CI
+
+`.github/workflows/ci.yml` runs the validator and the `monorepo-stack` unit
+tests on every push and pull request. The full scaffold acceptance test
+(`plugins/monorepo-stack/scripts/acceptance.mjs`: generate, install, build,
+type-check, lint, test) runs on a manual trigger and weekly, because it
+installs from the npm registry.
+
+## History
+
+The design specs and plans in `docs/superpowers/` were written when this was a
+personal marketplace called `chamrong`. They are kept as written; the
+marketplace is now `anumat-erp`.
 
 ## Licence
 

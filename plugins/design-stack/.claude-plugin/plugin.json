@@ -6,5 +6,7 @@
     "name": "Chamrong Thor",
     "email": "thorchamrong.dev@gmail.com"
   },
-  "homepage": "https://github.com/thorchamrong/claude-plugins"
+  "homepage": "https://github.com/Anumat-ERP/anumat-erp-claude-plugin/tree/main/plugins/design-stack",
+  "repository": "https://github.com/Anumat-ERP/anumat-erp-claude-plugin",
+  "license": "MIT"
 }

@@ -22,7 +22,7 @@ and then keeps making them the same way.
 | Language | TypeScript 5.9 | — |
 | Unit and component tests | Vitest + Testing Library + MSW | `bun test` is faster, but Testing Library, jsdom, MSW and Next all assume Vitest or Jest. Test-infrastructure failures are expensive to debug |
 | End-to-end | Playwright | — |
-| Component isolation | Storybook 9 | The layer most monorepos skip, and the one that makes the component inventory legible |
+| Component isolation | Storybook 10 | The layer most monorepos skip, and the one that makes the component inventory legible |
 
 **Bun does install and script-running, not bundling.** Next runs its own
 toolchain underneath. This matters when something breaks: the failure is

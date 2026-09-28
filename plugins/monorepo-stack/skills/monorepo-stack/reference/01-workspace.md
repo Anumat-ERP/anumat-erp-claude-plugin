@@ -12,7 +12,7 @@ Bun declares workspaces inside the root `package.json`, not a separate file:
   "workspaces": {
     "packages": ["apps/*", "modules/*", "packages/*", "packages/config/*"],
     "catalog": { "react": "^19.2.0" },
-    "catalogs": { "testing": { "vitest": "^3.2.4" } }
+    "catalogs": { "testing": { "vitest": "^4.0.0" } }
   }
 }
 ```

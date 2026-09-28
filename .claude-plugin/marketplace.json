@@ -1,12 +1,13 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "chamrong",
+  "name": "anumat-erp",
   "owner": {
-    "name": "Chamrong Thor",
+    "name": "Anumat ERP",
     "email": "thorchamrong.dev@gmail.com"
   },
   "metadata": {
-    "description": "Personal Claude Code plugins."
+    "description": "Claude Code plugins for building Anumat: design research and evidence, and the Bun + Turborepo monorepo stack the Anumat repos use.",
+    "homepage": "https://github.com/Anumat-ERP/anumat-erp-claude-plugin"
   },
   "plugins": [
     {
@@ -19,7 +20,14 @@
         "name": "Chamrong Thor",
         "email": "thorchamrong.dev@gmail.com"
       },
-      "tags": ["design", "ui", "ux", "patterns", "design-systems", "accessibility"]
+      "tags": [
+        "design",
+        "ui",
+        "ux",
+        "patterns",
+        "design-systems",
+        "accessibility"
+      ]
     },
     {
       "name": "monorepo-stack",
@@ -31,7 +39,14 @@
         "name": "Chamrong Thor",
         "email": "thorchamrong.dev@gmail.com"
       },
-      "tags": ["monorepo", "bun", "turborepo", "storybook", "scaffolding", "nextjs"]
+      "tags": [
+        "monorepo",
+        "bun",
+        "turborepo",
+        "storybook",
+        "scaffolding",
+        "nextjs"
+      ]
     }
   ]
 }

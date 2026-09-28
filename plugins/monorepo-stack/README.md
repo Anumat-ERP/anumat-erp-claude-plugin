@@ -18,7 +18,7 @@ on each other — and then keeps making them the same way.
 | Language | TypeScript 5.9 | — |
 | Tests | Vitest + Testing Library + MSW | `bun test` is faster, but Testing Library, jsdom, MSW and Next all assume Vitest or Jest |
 | End-to-end | Playwright | — |
-| Component isolation | Storybook 9 (`react-vite`) | Not the Next framework: a UI package is framework-agnostic React |
+| Component isolation | Storybook 10 (`react-vite`) | Not the Next framework: a UI package is framework-agnostic React |
 
 ## Three layers
 
