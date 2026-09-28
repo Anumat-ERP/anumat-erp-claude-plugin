@@ -46,4 +46,22 @@ test('pickVersion sorts numerically, not lexically', () => {
   assertEqual(pickVersion('^19.0.0', available, { allowMajorBumps: false }), '^19.10.0');
 });
 
+test('pickVersion respects the 0.x rule where minor is the breaking axis', () => {
+  // Under semver ^0.5.0 means >=0.5.0 <0.6.0. Treating 0 as "the major" made
+  // the in-major filter a no-op and bumped across breaking boundaries.
+  assertEqual(pickVersion('^0.5.0', ['0.5.1', '0.9.3', '0.12.0'], { allowMajorBumps: false }), '^0.5.1');
+  assertEqual(pickVersion('~0.5.0', ['0.5.4', '0.9.3'], { allowMajorBumps: false }), '~0.5.4');
+});
+
+test('pickVersion leaves non-semver ranges completely alone', () => {
+  for (const range of ['workspace:*', 'catalog:', 'latest', '*', 'file:../x', 'npm:pkg@1.0.0']) {
+    assertEqual(pickVersion(range, ['1.0.0', '2.0.0'], { allowMajorBumps: true }), range);
+  }
+});
+
+test('pickVersion does not tighten an open or upper-bounded range', () => {
+  assertEqual(pickVersion('>=22', ['22.14.0'], { allowMajorBumps: false }), '>=22');
+  assertEqual(pickVersion('<5.0.0', ['4.9.9'], { allowMajorBumps: false }), '<5.0.0');
+});
+
 run();

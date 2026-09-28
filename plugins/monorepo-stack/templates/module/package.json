@@ -12,7 +12,8 @@
     "check-types": "tsc --noEmit",
     "test": "vitest run",
     "test:ci": "vitest run --coverage",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "lint": "eslint ."
   },
   "peerDependencies": {
     "react": "catalog:",
@@ -34,6 +35,10 @@
     "jsdom": "catalog:testing",
     "react": "catalog:",
     "typescript": "catalog:",
-    "vitest": "catalog:testing"
+    "vitest": "catalog:testing",
+    "@storybook/react-vite": "catalog:storybook",
+    "vite": "catalog:storybook",
+    "eslint": "catalog:",
+    "@repo/eslint-config": "workspace:*"
   }
 }

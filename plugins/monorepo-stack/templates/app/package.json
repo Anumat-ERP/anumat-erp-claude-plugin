@@ -34,6 +34,7 @@
     "tailwindcss": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:testing",
-    "@testing-library/jest-dom": "catalog:testing"
+    "@testing-library/jest-dom": "catalog:testing",
+    "eslint": "catalog:"
   }
 }

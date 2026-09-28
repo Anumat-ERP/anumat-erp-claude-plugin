@@ -1,4 +1,14 @@
 {
   "extends": "@repo/typescript-config/react-library.json",
-  "include": ["domain", "application", "infrastructure", "ui", "security", "index.ts", "module.config.ts", "vitest.d.ts"]
+  "include": [
+    "domain",
+    "application",
+    "infrastructure",
+    "data",
+    "ui",
+    "security",
+    "index.ts",
+    "module.config.ts",
+    "vitest.d.ts"
+  ]
 }

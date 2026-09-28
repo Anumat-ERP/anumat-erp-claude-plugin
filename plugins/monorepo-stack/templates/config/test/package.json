@@ -11,5 +11,8 @@
   },
   "devDependencies": {
     "vitest": "catalog:testing"
+  },
+  "scripts": {
+    "check-types": "echo \"no sources to type-check\""
   }
 }

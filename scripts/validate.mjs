@@ -12,6 +12,11 @@ import { fileURLToPath } from 'node:url';
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 
 /** Body-length caps, in lines. Progressive disclosure: detail lives in reference files. */
+/** Applies to any skill without an explicit entry, so a new skill is never
+ *  silently uncapped. Keying the cap purely by name meant adding a row fixed
+ *  one skill rather than the hole. */
+const DEFAULT_SKILL_BODY_MAX = 150;
+
 const SKILL_BODY_MAX = {
   'design-stack': 150,
   'design-evidence': 80,
@@ -257,9 +262,9 @@ function checkSkills(pluginDirs) {
         );
       }
 
-      const cap = SKILL_BODY_MAX[name];
+      const cap = SKILL_BODY_MAX[name] ?? DEFAULT_SKILL_BODY_MAX;
       const bodyLines = body.trim().split(/\r?\n/).length;
-      if (cap !== undefined && bodyLines > cap) {
+      if (bodyLines > cap) {
         fail(
           lenCheck,
           `${rel(skillMd)} body is ${bodyLines} lines, cap is ${cap} ` +

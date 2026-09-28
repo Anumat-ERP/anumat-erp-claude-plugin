@@ -1,8 +1,8 @@
 import { Button } from '@repo/ui/components/button';
-import type { Record } from '../../domain/__MODULE_NAME__.js';
+import type { DomainRecord } from '../../domain/__MODULE_NAME__.js';
 
 export interface RecordListProps {
-  records: Record[];
+  records: DomainRecord[];
   /** Distinguishes "no records yet" from "the filter matched nothing". */
   isFiltered?: boolean;
   isLoading?: boolean;

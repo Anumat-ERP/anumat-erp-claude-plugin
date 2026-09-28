@@ -9,37 +9,29 @@
  * compose it instead of importing into its internals.
  */
 import { existsSync, mkdirSync } from 'node:fs';
-import { dirname, join, resolve } from 'node:path';
+import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { renderTree } from './lib/template.mjs';
 import { findWorkspaceRoot } from './lib/workspace.mjs';
+import { parseArgs, resolveCwd, validateName } from './lib/args.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const args = process.argv.slice(2);
+const { positionals, flags } = parseArgs(process.argv.slice(2), ['--cwd', '--label', '--summary']);
+const name = positionals[0];
+const flag = (key) => (typeof flags[key] === 'string' ? flags[key] : null);
 
-const flag = (name) => {
-  const i = args.indexOf(name);
-  return i === -1 ? null : args[i + 1];
-};
-
-const FLAGS_WITH_VALUES = new Set(['--label', '--summary', '--cwd']);
-const name = args.find(
-  (a, i) => !a.startsWith('--') && !(i > 0 && FLAGS_WITH_VALUES.has(args[i - 1])),
-);
-
-if (!name) {
-  console.error('usage: add-module.mjs <name> [--label "Label"] [--summary "..."] [--cwd <dir>]');
+const nameError = validateName(name, 'module');
+if (nameError) {
+  console.error(nameError);
   process.exit(1);
 }
 
-if (!/^[a-z][a-z0-9-]*$/.test(name)) {
-  // The name becomes a directory, a package name, a permission prefix and a
-  // route segment. Constraining it once here avoids four inconsistent spellings.
-  console.error(`invalid module name "${name}": use lowercase kebab-case, starting with a letter`);
+const { dir: start, error } = resolveCwd(flags, 'module');
+if (error) {
+  console.error(error);
   process.exit(1);
 }
 
-const start = resolve(flag('--cwd') ?? process.cwd());
 const root = findWorkspaceRoot(start);
 if (!root) {
   console.error(`no workspace root found from ${start}`);

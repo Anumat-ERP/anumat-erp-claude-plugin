@@ -4,10 +4,10 @@ import {
   RecordSchema,
   canTransition,
   transition,
-  type Record,
+  type DomainRecord,
 } from './__MODULE_NAME__.js';
 
-const record = (status: Record['status']): Record => ({
+const record = (status: DomainRecord['status']): DomainRecord => ({
   id: 'r1',
   name: 'Example',
   status,

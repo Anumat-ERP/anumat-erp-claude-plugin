@@ -33,7 +33,7 @@ usually Next's, not Bun's. Known friction is recorded in
 
 ```
 <repo>/
-├── package.json          workspaces + catalog + catalogs; scripts delegate to turbo
+├── package.json          workspaces + catalog + catalogs; scripts use bun --filter
 ├── turbo.json            build · dev · lint · check-types · test · coverage · e2e · storybook
 ├── bunfig.toml
 ├── bun.lock              committed
@@ -42,8 +42,11 @@ usually Next's, not Bun's. Known friction is recorded in
 │       ├── app/          routes — Next App Router
 │       ├── core/         app infrastructure: auth, env, i18n, stores, proxy
 │       └── shared/       app-local reuse: component, hook, lib
+├── modules/              business capabilities, composed by apps
+│   └── <capability>/     domain · application · infrastructure · ui · security
 └── packages/
     ├── ui/               components + .storybook/ + stories
+    ├── module-kit/       manifest contract; load order, permissions, navigation
     ├── testing/          render helper, MSW server, setup files
     ├── e2e/              Playwright
     └── config/           eslint-config · typescript-config · test-config
@@ -68,7 +71,8 @@ grew its own copy is something that should have been extracted. Detail in
 |---|---|---|
 | `/monorepo-stack:init` | Creates the workspace, one app, and the shared packages | no — new only |
 | `/monorepo-stack:add-app` | Adds an app and allocates a free dev port | yes |
-| `/monorepo-stack:add-package` | Adds a shared package with an exports map | yes |
+| `/monorepo-stack:add-module` | Adds a business capability: domain, use cases, UI, permissions | yes |
+| `/monorepo-stack:add-package` | Adds a shared technical package with an exports map | yes |
 | `/monorepo-stack:add-storybook` | Adds Storybook to a UI package | yes — any package manager |
 | `/monorepo-stack:audit` | Reports deviations. Read-only, never writes | yes |
 

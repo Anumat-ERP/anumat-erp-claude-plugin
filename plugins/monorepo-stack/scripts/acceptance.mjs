@@ -35,6 +35,8 @@ try {
   step('add module', process.execPath, [join(HERE, 'add-module.mjs'), 'inventory', '--cwd', target], HERE);
   step('install', 'bun', ['install'], target);
   step('build', 'bun', ['run', 'build'], target);
+  step('check-types', 'bun', ['run', 'check-types'], target);
+  step('lint', 'bun', ['run', 'lint'], target);
   step('test', 'bun', ['run', 'test'], target);
   step('storybook:build', 'bun', ['run', 'storybook:build'], target);
 

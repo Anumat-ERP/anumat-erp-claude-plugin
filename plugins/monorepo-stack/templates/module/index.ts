@@ -15,8 +15,9 @@ export {
   RecordSchema,
   StatusValues,
   canTransition,
+  transition,
   IllegalTransitionError,
-  type Record,
+  type DomainRecord,
   type Status,
 } from './domain/__MODULE_NAME__.js';
 

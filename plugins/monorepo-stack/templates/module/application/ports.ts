@@ -1,4 +1,4 @@
-import type { Record } from '../domain/__MODULE_NAME__.js';
+import type { DomainRecord } from '../domain/__MODULE_NAME__.js';
 
 /**
  * Ports: what this module needs from the outside world, stated as interfaces
@@ -9,9 +9,9 @@ import type { Record } from '../domain/__MODULE_NAME__.js';
  * tested against an in-memory double with no mocking framework at all.
  */
 export interface RecordRepository {
-  list(query?: { status?: Record['status']; search?: string }): Promise<Record[]>;
-  get(id: string): Promise<Record | null>;
-  save(record: Record): Promise<Record>;
+  list(query?: { status?: DomainRecord['status']; search?: string }): Promise<DomainRecord[]>;
+  get(id: string): Promise<DomainRecord | null>;
+  save(record: DomainRecord): Promise<DomainRecord>;
   remove(id: string): Promise<void>;
 }
 

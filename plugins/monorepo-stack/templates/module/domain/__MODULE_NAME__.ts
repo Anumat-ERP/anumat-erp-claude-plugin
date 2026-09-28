@@ -22,7 +22,7 @@ export const RecordSchema = z.object({
   createdAt: z.date(),
 });
 
-export type Record = z.infer<typeof RecordSchema>;
+export type DomainRecord = z.infer<typeof RecordSchema>;
 
 /**
  * Legal transitions, declared as data.
@@ -52,7 +52,7 @@ export class IllegalTransitionError extends Error {
 }
 
 /** Returns a new record; never mutates. Callers compare old and new freely. */
-export function transition(record: Record, to: Status): Record {
+export function transition(record: DomainRecord, to: Status): DomainRecord {
   if (!canTransition(record.status, to)) {
     throw new IllegalTransitionError(record.status, to);
   }

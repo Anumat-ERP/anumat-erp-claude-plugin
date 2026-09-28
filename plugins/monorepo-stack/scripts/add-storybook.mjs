@@ -12,6 +12,7 @@ import { existsSync, readdirSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { renderTree } from './lib/template.mjs';
+import { isInside } from './lib/args.mjs';
 import {
   detectPackageManager,
   findWorkspaceRoot,
@@ -38,7 +39,18 @@ if (!root) {
 /** The UI package: named explicitly, or the first packages/* dir that looks like one. */
 function findUiPackage() {
   const explicit = opt('--package');
-  if (explicit) return resolve(root, explicit);
+  if (explicit) {
+    const candidate = resolve(root, explicit);
+    // '.' resolves to the workspace root, which always has a package.json — so
+    // the only previous guard passed and Storybook was written into the root.
+    if (!isInside(root, candidate)) {
+      console.error(
+        `--package must name a directory inside the workspace, not "${explicit}".`,
+      );
+      process.exit(1);
+    }
+    return candidate;
+  }
   const packages = join(root, 'packages');
   if (!existsSync(packages)) return null;
   const match = readdirSync(packages).find((n) => /^(ui|design-system|components)$/.test(n));
@@ -55,7 +67,11 @@ if (existsSync(join(uiDir, '.storybook'))) {
   process.exit(1);
 }
 
-renderTree(join(HERE, '..', 'templates', 'overlay', 'storybook'), uiDir, {});
+renderTree(join(HERE, '..', 'templates', 'overlay', 'storybook'), uiDir, {
+  // Left blank on purpose: this repo may have no globals.css, and an
+  // unresolvable import fails the entire preview build.
+  __STORYBOOK_CSS_IMPORT__: '// Add your global stylesheet import here.',
+});
 
 const manifestPath = join(uiDir, 'package.json');
 const manifest = readJson(manifestPath);

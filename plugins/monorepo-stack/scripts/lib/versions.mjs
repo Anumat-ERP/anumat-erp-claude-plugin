@@ -19,6 +19,18 @@ export function parseMajor(range) {
   return match ? Number(match[1]) : 0;
 }
 
+/**
+ * Ranges this function is willing to touch: an optional `^` or `~` followed by
+ * a plain three-part version.
+ *
+ * Everything else is left exactly as written. `workspace:*`, `catalog:`,
+ * `latest`, `file:` and `npm:` are not versions at all, and rewriting `>=22`
+ * to `>=22.14.0` silently tightens a bound the author chose to leave open.
+ * A resolver that edits ranges it does not understand is worse than one that
+ * does nothing.
+ */
+const SUPPORTED = /^([\^~]?)(\d+)\.(\d+)\.(\d+)$/;
+
 const PREFIX = /^[\^~>=<\s]*/;
 
 const compare = (a, b) => {
@@ -37,16 +49,31 @@ const compare = (a, b) => {
  * the registry could not be reached, so offline degrades to the curated pins.
  */
 export function pickVersion(range, available, { allowMajorBumps = false } = {}) {
-  const prefix = (PREFIX.exec(range)?.[0] ?? '').trim();
-  const currentMajor = parseMajor(range);
-  const current = range.replace(PREFIX, '');
+  const parsed = SUPPORTED.exec(String(range).trim());
+  if (!parsed) return range;
 
-  const candidates = available
+  const [, prefix, majorStr, minorStr] = parsed;
+  const major = Number(majorStr);
+  const minor = Number(minorStr);
+  const current = `${majorStr}.${minorStr}.${parsed[4]}`;
+
+  /**
+   * Semver's 0.x rule: below 1.0.0 the MINOR is the breaking axis, so `^0.5.0`
+   * means `>=0.5.0 <0.6.0`. Holding "the major" at 0 holds nothing.
+   */
+  const compatible = (v) => {
+    const [vMajor, vMinor] = v.split('.').map(Number);
+    if (allowMajorBumps) return true;
+    if (major === 0) return vMajor === 0 && vMinor === minor;
+    return vMajor === major;
+  };
+
+  const newest = available
     .filter((v) => /^\d+\.\d+\.\d+$/.test(v)) // stable only: no canary, rc, beta
-    .filter((v) => allowMajorBumps || parseMajor(v) === currentMajor)
-    .sort(compare);
+    .filter(compatible)
+    .sort(compare)
+    .at(-1);
 
-  const newest = candidates.at(-1);
   if (!newest || compare(newest, current) <= 0) return range;
   return `${prefix}${newest}`;
 }

@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { RecordList } from './record-list.js';
-import type { Record } from '../../domain/__MODULE_NAME__.js';
+import type { DomainRecord } from '../../domain/__MODULE_NAME__.js';
 
-const record = (id: string, name: string, status: Record['status']): Record => ({
+const record = (id: string, name: string, status: DomainRecord['status']): DomainRecord => ({
   id,
   name,
   status,

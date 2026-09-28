@@ -1,19 +1,25 @@
 #!/usr/bin/env node
 /** Add an app to an existing workspace. Usage: node add-app.mjs <name> [--cwd <dir>] */
 import { existsSync } from 'node:fs';
-import { dirname, join, resolve } from 'node:path';
+import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { renderTree } from './lib/template.mjs';
 import { findWorkspaceRoot, nextFreePort } from './lib/workspace.mjs';
+import { parseArgs, resolveCwd, validateName } from './lib/args.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const args = process.argv.slice(2);
-const name = args.find((a) => !a.startsWith('--') && args[args.indexOf(a) - 1] !== '--cwd');
-const cwdIndex = args.indexOf('--cwd');
-const start = cwdIndex === -1 ? process.cwd() : resolve(args[cwdIndex + 1]);
+const { positionals, flags } = parseArgs(process.argv.slice(2));
+const name = positionals[0];
 
-if (!name) {
-  console.error('usage: add-app.mjs <name> [--cwd <dir>]');
+const nameError = validateName(name, 'app');
+if (nameError) {
+  console.error(nameError);
+  process.exit(1);
+}
+
+const { dir: start, error } = resolveCwd(flags, 'app');
+if (error) {
+  console.error(error);
   process.exit(1);
 }
 

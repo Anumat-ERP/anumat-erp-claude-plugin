@@ -64,7 +64,10 @@ for (const cfg of ['eslint', 'typescript', 'test']) {
 for (const pkg of ['module-kit', 'testing', 'ui', 'e2e']) {
   renderTree(join(TEMPLATES, 'package', pkg), join(target, 'packages', pkg), tokens);
 }
-renderTree(join(TEMPLATES, 'overlay', 'storybook'), join(target, 'packages', 'ui'), tokens);
+renderTree(join(TEMPLATES, 'overlay', 'storybook'), join(target, 'packages', 'ui'), {
+  ...tokens,
+  __STORYBOOK_CSS_IMPORT__: "import '../src/styles/globals.css';",
+});
 renderTree(join(TEMPLATES, 'app'), join(target, 'apps', appName), tokens);
 
 mkdirSync(join(target, 'modules'), { recursive: true });

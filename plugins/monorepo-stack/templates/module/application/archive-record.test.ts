@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { IllegalTransitionError, type Record } from '../domain/__MODULE_NAME__.js';
+import { IllegalTransitionError, type DomainRecord } from '../domain/__MODULE_NAME__.js';
 import {
   PermissionDeniedError,
   RecordNotFoundError,
@@ -12,7 +12,7 @@ import type { ModuleContext, RecordRepository } from './ports.js';
  * implements it directly — no mocking framework, and the test breaks if the
  * interface changes, which is exactly when it should.
  */
-function inMemory(seed: Record[] = []): RecordRepository {
+function inMemory(seed: DomainRecord[] = []): RecordRepository {
   const store = new Map(seed.map((r) => [r.id, r]));
   return {
     async list() {
@@ -31,7 +31,7 @@ function inMemory(seed: Record[] = []): RecordRepository {
   };
 }
 
-const record = (status: Record['status']): Record => ({
+const record = (status: DomainRecord['status']): DomainRecord => ({
   id: 'r1',
   name: 'Example',
   status,

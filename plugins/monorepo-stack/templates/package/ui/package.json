@@ -13,7 +13,8 @@
     "test:ci": "vitest run --coverage",
     "coverage": "vitest run --coverage",
     "storybook": "storybook dev -p 6006",
-    "storybook:build": "storybook build"
+    "storybook:build": "storybook build",
+    "lint": "eslint ."
   },
   "peerDependencies": {
     "react": "catalog:",
@@ -38,6 +39,8 @@
     "vitest": "catalog:testing",
     "@testing-library/jest-dom": "catalog:testing",
     "@storybook/react-vite": "catalog:storybook",
-    "vite": "catalog:storybook"
+    "vite": "catalog:storybook",
+    "eslint": "catalog:",
+    "@repo/eslint-config": "workspace:*"
   }
 }

@@ -1,4 +1,4 @@
-import { RecordSchema, type Record } from '../domain/__MODULE_NAME__.js';
+import { RecordSchema, type DomainRecord } from '../domain/__MODULE_NAME__.js';
 import type { RecordRepository } from '../application/ports.js';
 
 /**
@@ -8,13 +8,13 @@ import type { RecordRepository } from '../application/ports.js';
  * transport — REST to GraphQL, live to local-first — is a change here and
  * nowhere else, which is the entire point of the port living in application/.
  *
- * Responses are parsed, not cast. `as Record` would move the failure from this
+ * Responses are parsed, not cast. `as DomainRecord` would move the failure from this
  * line to some component three screens away.
  */
 export function httpRecordRepository(baseUrl: string, fetchImpl = fetch): RecordRepository {
   const url = (path: string) => `${baseUrl.replace(/\/$/, '')}${path}`;
 
-  const parse = (value: unknown): Record =>
+  const parse = (value: unknown): DomainRecord =>
     RecordSchema.parse({
       ...(value as object),
       createdAt: new Date((value as { createdAt: string }).createdAt),

@@ -21,11 +21,25 @@ export function detectPackageManager(root) {
   for (const [file, pm] of LOCKFILES) {
     if (existsSync(join(root, file))) return pm;
   }
-  return null;
+  // No lockfile: the packageManager field is now the only evidence available.
+  // Preferring it over a guess is the whole point of not assuming Bun.
+  const declared = safeReadJson(join(root, 'package.json'))?.packageManager;
+  const name = typeof declared === 'string' ? declared.split('@')[0] : null;
+  return ['bun', 'pnpm', 'npm', 'yarn'].includes(name) ? name : null;
 }
 
 export function readJson(path) {
   return JSON.parse(readFileSync(path, 'utf8'));
+}
+
+/** readJson that returns null instead of throwing. For inspecting repos we do
+ *  not control, where a malformed file is data rather than a crash. */
+export function safeReadJson(path) {
+  try {
+    return readJson(path);
+  } catch {
+    return null;
+  }
 }
 
 export function writeJson(path, obj) {
@@ -56,16 +70,23 @@ export function findWorkspaceRoot(startDir) {
 
 const dirsIn = (path) =>
   existsSync(path)
-    ? readdirSync(path).filter((n) => statSync(join(path, n)).isDirectory())
+    ? readdirSync(path, { withFileTypes: true })
+        .filter((d) => d.isDirectory())
+        .map((d) => d.name)
     : [];
 
-export function listWorkspacePackages(root) {
+export function listWorkspacePackages(root, unreadable = []) {
   const out = [];
   for (const group of ['apps', 'packages']) {
     for (const name of dirsIn(join(root, group))) {
-      const manifest = join(root, group, name, 'package.json');
-      if (!existsSync(manifest)) continue;
-      out.push({ name, dir: join(root, group, name), manifest: readJson(manifest) });
+      const manifestPath = join(root, group, name, 'package.json');
+      if (!existsSync(manifestPath)) continue;
+      const manifest = safeReadJson(manifestPath);
+      if (manifest === null) {
+        unreadable.push(`${group}/${name}/package.json`);
+        continue;
+      }
+      out.push({ name, dir: join(root, group, name), manifest });
     }
   }
   return out;
@@ -76,12 +97,33 @@ export function listWorkspacePackages(root) {
  * Two apps on one port is silent until somebody runs both, which is why this
  * is computed rather than left to whoever adds the app.
  */
+/** Framework defaults, for dev scripts that never name a port. */
+const DEFAULT_PORTS = [
+  [/\bnext\b/, 3000],
+  [/\bvite\b/, 5173],
+  [/\bremix\b/, 3000],
+  [/\bnuxt\b/, 3000],
+  [/\bastro\b/, 4321],
+];
+
+/** The port a dev script will actually bind, explicit or implied. */
+export function portOf(devScript) {
+  const explicit = /(?:--port[= ]|PORT=)(\d+)/.exec(devScript);
+  if (explicit) return Number(explicit[1]);
+  // A script with no flag still occupies the framework's default. Ignoring
+  // that is how add-app hands out a port an existing app is already using —
+  // the exact silent collision this function exists to prevent.
+  for (const [pattern, port] of DEFAULT_PORTS) {
+    if (pattern.test(devScript)) return port;
+  }
+  return null;
+}
+
 export function nextFreePort(root, base = 3000) {
   const taken = new Set();
   for (const pkg of listWorkspacePackages(root)) {
-    const dev = pkg.manifest.scripts?.dev ?? '';
-    const match = /--port[= ](\d+)/.exec(dev);
-    if (match) taken.add(Number(match[1]));
+    const port = portOf(pkg.manifest.scripts?.dev ?? '');
+    if (port !== null) taken.add(port);
   }
   let port = base;
   while (taken.has(port)) port++;

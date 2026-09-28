@@ -1,5 +1,9 @@
 import type { ReactElement, ReactNode } from 'react';
-import { render as rtlRender, type RenderOptions } from '@testing-library/react';
+import {
+  render as rtlRender,
+  type RenderOptions,
+  type RenderResult,
+} from '@testing-library/react';
 
 /**
  * Wrap every component under test in the same providers the app uses.
@@ -11,7 +15,13 @@ function Providers({ children }: { children: ReactNode }) {
   return <>{children}</>;
 }
 
-export function render(ui: ReactElement, options?: Omit<RenderOptions, 'wrapper'>) {
+// The return type is annotated rather than inferred: inferring it names a path
+// inside the package manager's store, which TypeScript rejects as non-portable
+// (TS2742) the moment another package consumes this one.
+export function render(
+  ui: ReactElement,
+  options?: Omit<RenderOptions, 'wrapper'>,
+): RenderResult {
   return rtlRender(ui, { wrapper: Providers, ...options });
 }
 

@@ -30,11 +30,19 @@ if (!root) {
   process.exit(0);
 }
 
+
 const findings = [];
 const finding = (id, severity, message, fix) => findings.push({ id, severity, message, fix });
 
 const pm = detectPackageManager(root);
-const packages = listWorkspacePackages(root);
+const unreadable = [];
+const packages = listWorkspacePackages(root, unreadable);
+
+for (const path of unreadable) {
+  finding('unreadable-manifest', 'important',
+    `${path} is not valid JSON, so this package is invisible to the workspace and to every tool that reads it.`,
+    'Fix the JSON syntax.');
+}
 const uiPackage = packages.find((p) => /^(ui|design-system|components)$/.test(p.name));
 
 if (pm === null) {
@@ -104,7 +112,12 @@ for (const name of moduleNames) {
       'Add a manifest declaring name, depends, permissions and navigation.');
     continue;
   }
-  const source = readFileSync(manifestPath, 'utf8');
+  let source = '';
+  try {
+    source = readFileSync(manifestPath, 'utf8');
+  } catch {
+    continue;
+  }
   const depends = [...(/depends:\s*\[([^\]]*)\]/.exec(source)?.[1] ?? '').matchAll(/['"]([^'"]+)['"]/g)]
     .map((m) => m[1]);
   declared.set(name, depends);
