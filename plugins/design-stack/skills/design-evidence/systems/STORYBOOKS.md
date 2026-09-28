@@ -59,10 +59,10 @@ found a gap — see below.
    component that does not exist yet; here is what it would be and where it
    would live" before writing it.
 3. **The house system wins every conflict** with anything in this plugin. If
-   `systems/carbon.md` says one thing and the project's Storybook says another,
+   `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/carbon.md` says one thing and the project's Storybook says another,
    the Storybook is correct for this project.
 4. **Check the tokens before writing any value.** If the project has a spacing
-   scale, use it — see `reference/01-foundations.md`.
+   scale, use it — see `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/01-foundations.md`.
 
 ---
 
@@ -79,7 +79,7 @@ Button → Field → Form → Modal → Table → Page
 That structure is invisible in a screenshot and is exactly what gets guessed at
 otherwise. Reading one real inventory teaches more about where component
 boundaries belong than any amount of reasoning in the abstract — see
-`reference/04-components.md` on the composition ladder.
+`${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/04-components.md` on the composition ladder.
 
 | Storybook | URL | Strongest for |
 |---|---|---|

@@ -8,8 +8,8 @@ Produce a written design brief for: **$ARGUMENTS**
 This command does **not** write code. Its output is a brief the user approves
 before anything is built. If you find yourself opening a component file, stop.
 
-Read `skills/design-evidence/SKILL.md` to find the matching playbook, and
-`skills/design-stack/reference/` as each section needs it.
+Read `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/SKILL.md` to find the matching playbook, and
+`${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/` as each section needs it.
 
 Ask the user only what you genuinely cannot determine from the codebase or the
 request — one question at a time, and only where different answers would change
@@ -32,11 +32,11 @@ like it" — something you could check.
 
 **5. Inventory.** What the project already has. Check for `.storybook/`,
 `*.stories.*`, a component directory, and a token file, following
-`systems/STORYBOOKS.md` Part 1. List the components that already exist and can
+`${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/STORYBOOKS.md` Part 1. List the components that already exist and can
 be reused, and name any gap that would have to be filled. The house system
 outranks anything imported.
 
-**6. Design system.** Which one, from `systems/CHOOSING.md`, and one sentence
+**6. Design system.** Which one, from `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/CHOOSING.md`, and one sentence
 of why. If the project already has its own, say so and use it.
 
 **7. Information architecture.** What is on this screen, grouped, in order.
@@ -46,7 +46,7 @@ deviated from it and why.
 **8. Task flow.** The main path, step by step — and the error path beside it.
 Both, always. A flow with only the success path is half a flow.
 
-**9. The six-state matrix.** The table from `patterns/states.md`, filled in for
+**9. The six-state matrix.** The table from `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/patterns/states.md`, filled in for
 this screen. Every row answered. "Not applicable" needs a stated reason.
 
 **10. Open questions.** What is still undecided and who decides it.

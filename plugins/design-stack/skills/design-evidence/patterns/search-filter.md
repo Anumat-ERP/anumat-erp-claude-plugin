@@ -13,7 +13,7 @@ is everything.
 2. Active filter chips    what is currently applied, each removable
 3. Result count           "47 of 1,284 results"
 4. Sort control
-5. Results                → patterns/data-table.md for tabular results
+5. Results                → ${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/patterns/data-table.md for tabular results
 ```
 
 **Why this order.** The user needs to know what they searched, what is
@@ -52,7 +52,7 @@ press it.
 **Always show active filters as removable chips**, regardless of where the
 controls live. A filter applied in a collapsed sidebar and not shown anywhere
 else produces a user who believes they are looking at everything. This is the
-same silent-filtering failure as in `patterns/dashboard.md`, and it is the most
+same silent-filtering failure as in `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/patterns/dashboard.md`, and it is the most
 consequential error in this document because it is invisible.
 
 Offer **clear all** whenever more than one filter is active.
@@ -89,7 +89,7 @@ repeatedly.
 
 **Saved searches** become valuable once filter combinations get complex enough
 to be worth naming. Treat a saved search as a real object: named, editable,
-shareable, possibly shared team-wide. `systems/atlassian.md` is the reference
+shareable, possibly shared team-wide. `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/atlassian.md` is the reference
 here.
 
 ## The six states
@@ -103,7 +103,7 @@ here.
 | **overflow** | 10,000 results, a 500-character query, 40 active filters. Cap displayed results, paginate, and say the count is approximate if it is. |
 | **offline** | search cached results if you can and mark them as such; otherwise say search is unavailable rather than returning nothing. |
 
-Definitions: `patterns/states.md`.
+Definitions: `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/patterns/states.md`.
 
 ## Common failures
 
@@ -126,4 +126,4 @@ Definitions: `patterns/states.md`.
 | **GitHub** | query syntax alongside UI filters, scope switching |
 | **Stripe** | filtering over large record sets with accurate counts |
 | **Airbnb** | filters as a modal on mobile, results updating live behind |
-| **Jira** | saved filters as shared objects — `systems/atlassian.md` |
+| **Jira** | saved filters as shared objects — `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/atlassian.md` |

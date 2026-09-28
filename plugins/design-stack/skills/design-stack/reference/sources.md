@@ -9,7 +9,7 @@ had read it.
 
 **Before anything here: if the project has its own Storybook, component
 library, or token file, that outranks every source on this page.** See
-`systems/STORYBOOKS.md`.
+`${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/STORYBOOKS.md`.
 
 ---
 
@@ -49,7 +49,7 @@ team *decomposes* a product, which a screenshot cannot.
 | Chakra UI | https://chakra-ui.com/docs/components |
 | Elastic EUI | https://eui.elastic.co |
 
-How to read one efficiently: `systems/STORYBOOKS.md`.
+How to read one efficiently: `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/STORYBOOKS.md`.
 
 ### Principles and research
 
@@ -96,17 +96,14 @@ How to read one efficiently: `systems/STORYBOOKS.md`.
 
 ---
 
-## Human-only — Claude cannot open these
+## Gated — Claude cannot open these
 
-**Do not cite these as if you had read them.** They are login-walled,
-paywalled, or purely visual. To use one, ask the user to browse it and paste
-screenshots; then design from what the screenshots actually show, and say that
-is what you are working from.
+Login-walled or paywalled. A fetch returns a sign-in page, not content.
 
-Recommending one of these to the user is useful. Claiming to have consulted it
-is not.
-
-### Real-product evidence
+**Do not cite these as if you had read them.** To use one, ask the user to
+browse it and paste screenshots; then design from what the screenshots actually
+show, and say that is what you are working from. Recommending one is useful;
+claiming to have consulted it is not.
 
 | Source | Good for |
 |---|---|
@@ -114,14 +111,22 @@ is not.
 | Refero | real product UI, organised by screen type |
 | Page Flows | recorded user flows — signup, onboarding, checkout, cancellation |
 | Screenlane | mobile UI patterns |
-| UX Archive | common flows across apps |
 | SaaSFrame | SaaS product and landing-page examples |
+| UX Archive | common flows across apps |
 
-The distilled substance of this category is already in `patterns/` — that is
-what those playbooks are made of. Send the user here when you need something
-current, something niche, or a specific competitor.
+The distilled substance of this category is already in
+`${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/patterns/` — that is what those
+playbooks are made of. Send the user here when you need something current,
+something niche, or a specific competitor.
 
-### Visual inspiration
+---
+
+## Public, but low-yield to fetch
+
+These **are** reachable — the reason not to fetch them is different, and worth
+being precise about. Their value is in the pixels: a gallery page gives you
+thumbnails, titles, and outbound links, so fetching one costs tokens and
+returns almost none of what makes it useful.
 
 | Source | Good for |
 |---|---|
@@ -129,9 +134,12 @@ current, something niche, or a specific competitor.
 | Godly | high-quality web design |
 | Land-book | landing pages |
 | SiteInspire | curated sites |
-| Dribbble | visual ideas — note these are often not real products |
-| Behance | full case studies |
+| Dribbble | visual ideas — often concepts, not shipped products |
+| Behance | full case studies, which *do* carry readable text |
 
-Use these for visual direction, not for UX truth: a showcase entry is selected
-for how it photographs, not for how it performed. Aesthetic direction is the
-`frontend-design` skill's call in any case.
+Fetch one when the user asks, or when a specific page has written content worth
+reading. Otherwise ask for screenshots, which is what you actually need.
+
+Use all of these for visual direction rather than UX truth: a showcase entry is
+selected for how it photographs, not for how it performed. Aesthetic direction
+is the `frontend-design` skill's call in any case.

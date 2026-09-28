@@ -89,8 +89,8 @@ Name tokens by **role**, never by value.
 :root {
   /* surfaces */
   --surface-base:     #ffffff;
-  --surface-raised:   #ffffff;
-  --surface-overlay:  #ffffff;
+  --surface-raised:   #ffffff;  /* same hue, lifted by border or shadow */
+  --surface-overlay:  #ffffff;  /* same hue, lifted by a stronger shadow */
   --surface-sunken:   #f6f7f9;
 
   /* content */
@@ -98,9 +98,10 @@ Name tokens by **role**, never by value.
   --text-secondary:   #5c6370;
   --text-disabled:    #9aa1ad;
 
-  /* lines */
-  --border-subtle:    #e6e8ec;
-  --border-strong:    #c9cdd6;
+  /* lines — note the three roles have different contrast obligations */
+  --border-subtle:      #e6e8ec;  /* decorative dividers only */
+  --border-strong:      #c9cdd6;  /* structural separation */
+  --border-interactive: #868d99;  /* control boundaries — must clear 3:1 */
 
   /* intent */
   --intent-accent:    #2f6feb;
@@ -124,8 +125,17 @@ Why role-naming matters: `--gray-50` cannot be themed. When dark mode arrives,
 of the codebase pays for it forever. `--surface-sunken` just takes a new value.
 
 The minimum set any project needs: **surface** (3–4 levels), **text** (3
-weights of emphasis), **border** (2 strengths), **intent** (accent, danger,
-warning, success), **space** (one scale), **radius** (3–4 steps).
+weights of emphasis), **border** (3 roles — see below), **intent** (accent,
+danger, warning, success), **space** (one scale), **radius** (3–4 steps).
+
+**Borders need three roles, not two strengths, because they carry different
+obligations.** A divider between two paragraphs is decoration and may be as
+faint as you like. The edge of a text input is the only thing telling a user
+where the control is, so it is a UI component boundary and must clear 3:1 —
+see `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/09-accessibility.md`.
+Collapsing both into one "border" token is how products end up with inputs
+nobody can locate: the value that looks right on a divider is far too faint on
+a control.
 
 ## Common failures
 

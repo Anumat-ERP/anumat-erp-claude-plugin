@@ -55,7 +55,7 @@ looks like if you can, and give exactly one action.
 | **Optimistic** | show the result immediately, reconcile or roll back visibly |
 
 Timing thresholds and the skeleton-mismatch problem are in
-`reference/08-motion.md`.
+`${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/08-motion.md`.
 
 The most damaging version is blanking loaded content to show a spinner during a
 refresh. The user loses their place, their scroll position, and any text they
@@ -80,7 +80,7 @@ Partial failure must degrade locally. One failed widget should show its own
 error and retry, not blank the page — and must never render as zero. A zero
 that means "no data" and a zero that means "the request failed" looking
 identical is the most dangerous bug a dashboard can have; see
-`reference/06-dashboard.md`.
+`${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/06-dashboard.md`.
 
 Never blame the user for a system failure, and never expose a stack trace as
 the user-facing message. Keep the technical detail available — behind a
@@ -119,7 +119,7 @@ Everything you size for typical content will meet atypical content.
 
 | Case | Answer |
 |---|---|
-| **Long strings** | truncate with tooltip, clamp, or wrap — see `reference/03-typography.md` |
+| **Long strings** | truncate with tooltip, clamp, or wrap — see `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/03-typography.md` |
 | **Many items** | paginate, virtualise, or infinite-scroll; say how many there are |
 | **Deep nesting** | cap the depth, or collapse and provide breadcrumbs |
 | **Narrow viewport** | a deliberate reflow, not horizontal scroll by accident |
@@ -164,4 +164,4 @@ stated reason**; an unstated omission is a missing state.
 | overflow | *what field is longest, what list is biggest, what happens at 320px?* |
 | offline | *what still works, what is disabled, what happens to in-flight work?* |
 
-This is section 1 of `reference/10-design-review.md`, and it is blocking there.
+This is section 1 of `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/10-design-review.md`, and it is blocking there.

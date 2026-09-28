@@ -16,7 +16,7 @@ Shipped products converge on this order:
 3. Notifications            channels × events
 4. Security & sessions      MFA, active sessions, API keys, audit log
 5. Integrations             connected apps, webhooks
-6. Billing                  plan, payment, invoices  → patterns/billing.md
+6. Billing                  plan, payment, invoices  → ${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/patterns/billing.md
 7. Danger zone              transfer, export, delete — separated, last
 ```
 
@@ -45,7 +45,7 @@ question settings must answer unambiguously. Separate them into distinct
 sections with explicit labels — "Your notifications" and "Workspace
 notifications" are different screens, not two cards.
 
-`systems/polaris.md` has the best public guidance on settings at scale.
+`${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/polaris.md` has the best public guidance on settings at scale.
 
 ## The six states
 
@@ -61,7 +61,7 @@ notifications" are different screens, not two cards.
 ## Common failures
 
 - **Autosave and explicit save mixed on one page.** The user cannot tell which
-  changes are safe. Pick one per screen; see `reference/05-forms.md`.
+  changes are safe. Pick one per screen; see `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/05-forms.md`.
 - **No search, past about thirty settings.** Users know the word for what they
   want and cannot find its section.
 - **Danger zone merely last, not separated.** Reachable by scrolling.
@@ -89,4 +89,4 @@ references.
 | **Slack** | notification settings as a matrix of channels × events, which is genuinely hard to lay out |
 
 For current screenshots, ask the user to browse Mobbin or Refero — Claude
-cannot open them. See `reference/sources.md`.
+cannot open them. See `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/sources.md`.

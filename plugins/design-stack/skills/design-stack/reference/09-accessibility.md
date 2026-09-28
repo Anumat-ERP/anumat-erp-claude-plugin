@@ -31,7 +31,7 @@ The most common version of this failure:
 
 Headings form the document outline screen-reader users navigate by. One `h1`
 per page, no skipped levels, and chosen for structure rather than for size —
-size comes from `reference/03-typography.md`.
+size comes from `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/03-typography.md`.
 
 Landmarks — `header`, `nav`, `main`, `aside`, `footer` — let users jump
 directly to a region. One `main` per page.
@@ -50,7 +50,7 @@ use the feature.
   use one. `tabindex="0"` to add something to the order, `tabindex="-1"` to
   make it focusable only programmatically.
 - **Focus is trapped inside modals** while open, and returns to the trigger on
-  close. See `reference/04-components.md`.
+  close. See `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/04-components.md`.
 - **A skip link** to `main` is the first focusable element, so keyboard users
   are not made to tab through the nav on every page.
 - **Nothing traps focus unintentionally.** A widget the user can tab into but
@@ -79,8 +79,17 @@ use the product.
 |---|---|
 | Body text | 4.5:1 |
 | Large text (18pt+, or 14pt+ bold) | 3:1 |
-| UI components, borders, icons carrying meaning | 3:1 |
+| UI component boundaries and states — the edge of an input, a checkbox, a toggle | 3:1 |
+| Icons and graphics that carry meaning | 3:1 |
 | Focus indicators | 3:1 |
+
+**Purely decorative lines are exempt.** WCAG 1.4.11 covers the parts needed to
+*identify* a control or understand a graphic, not every stroke on the page. A
+divider between two paragraphs conveys nothing and may be as faint as you like;
+the border of a text input is the only thing saying where the control is, and
+must clear 3:1. This distinction is why
+`${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/01-foundations.md` defines
+three border roles rather than two strengths.
 
 Disabled controls are exempt by the letter of the standard, which is a trap:
 users still need to read them to know what is unavailable. Do not take the
@@ -128,7 +137,7 @@ and anything appearing outside the user's focus.
 ## Forms
 
 Every input has a programmatically associated label — `<label for>`, or
-wrapping. Placeholders are not labels; see `reference/05-forms.md`.
+wrapping. Placeholders are not labels; see `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/05-forms.md`.
 
 Errors are tied to their field with `aria-describedby`, and the field is marked
 `aria-invalid`. Related controls — a radio group, a date's three fields — are
@@ -159,7 +168,7 @@ failures.
 - **`div` with a click handler.** Not focusable, not announced, no keyboard.
 - **`outline: none` with no replacement.** Keyboard users lose their position.
 - **Colour as the only signal.** Fails for colour blindness and in greyscale.
-- **Placeholder as label.** See `reference/05-forms.md`.
+- **Placeholder as label.** See `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/05-forms.md`.
 - **Modal without focus management.** Tabbing lands behind the overlay.
 - **Live region created with its message.** Never announced.
 - **`aria-label` contradicting visible text.** Two products, one screen.

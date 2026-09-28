@@ -2,7 +2,7 @@
 description: Print the curated design source stack, split by what Claude can fetch and what only a human can browse.
 ---
 
-Read `skills/design-stack/reference/sources.md` and present it to the user.
+Read `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/sources.md` and present it to the user.
 
 Keep the **agent-fetchable / human-only** split explicit and prominent. That
 division is the point of the file: one half Claude can read on request, the

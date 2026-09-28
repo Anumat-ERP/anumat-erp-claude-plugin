@@ -9,7 +9,8 @@ Billing is where trust is won or lost. A confusing billing page produces
 support tickets, chargebacks, and cancellations that were really about
 confusion rather than value.
 
-**Payment integration is a Stripe question, not a design one.** This playbook
+**Payment integration is a question for your payment processor, not a design
+one.** This playbook
 covers the screen.
 
 ## Canonical structure
@@ -112,7 +113,7 @@ regenerate.
 | **overflow** | 200 invoices, very long company names, multi-currency, many line items. Paginate invoice history. |
 | **offline** | disable all payment actions with a reason. Never accept card details you cannot submit. |
 
-Definitions: `patterns/states.md`.
+Definitions: `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/patterns/states.md`.
 
 ## Common failures
 

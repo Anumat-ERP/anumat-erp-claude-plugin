@@ -5,7 +5,7 @@
 **Chart type selection, colour encoding, and axis treatment belong to the
 `dataviz` skill.** This file covers the structure around the charts: what goes
 where, in what order, and how the numbers are framed. For the canonical screen
-composition of a dashboard, see `patterns/dashboard.md`.
+composition of a dashboard, see `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/patterns/dashboard.md`.
 
 A dashboard's job is to answer a question fast enough that the user does not
 open a spreadsheet. Everything below follows from that.
@@ -28,7 +28,7 @@ what matters, and the user pays for that refusal on every visit.
 
 | Part | Required | Notes |
 |---|---|---|
-| Value | yes | tabular figures — see `reference/03-typography.md` |
+| Value | yes | tabular figures — see `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/03-typography.md` |
 | Label | yes | says what it measures, unambiguously |
 | Timeframe | yes | "last 30 days" — a number without a period is meaningless |
 | Comparison | usually | vs previous period, target, or cohort |
@@ -93,7 +93,7 @@ last week's number in a meeting.
 Handle **partial failure**. One widget's data source being down should degrade
 that widget, with a visible error and a retry, not blank the page and not — far
 worse — silently render zero. A zero that means "no data" and a zero that means
-"the value is zero" must never look the same. See `patterns/states.md`.
+"the value is zero" must never look the same. See `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/patterns/states.md`.
 
 ## Common failures
 

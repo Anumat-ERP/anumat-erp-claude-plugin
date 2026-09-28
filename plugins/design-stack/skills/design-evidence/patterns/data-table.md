@@ -11,7 +11,7 @@ is expensive and everything that speeds it is worth space.
 ```
 1. Title + total count          "Orders · 1,284"
 2. Bulk action bar              appears on selection, replaces or overlays (3)
-3. Filters + search             → patterns/search-filter.md
+3. Filters + search             → ${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/patterns/search-filter.md
 4. The table
 5. Pagination                   page size, position, total
 ```
@@ -42,7 +42,7 @@ whether to filter further, all before they read a single row.
 
 The index-table vs resource-list distinction is Polaris's, and it is a real
 one: a list of people with avatars and three lines of detail is not a table and
-forcing it into columns makes it worse. See `systems/polaris.md`.
+forcing it into columns makes it worse. See `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/polaris.md`.
 
 ## Behaviour
 
@@ -95,7 +95,7 @@ professional tools, where users came specifically to compare columns.
 | **overflow** | the 200-character name, the 1,284-page pagination, the 40-column table. Truncate with tooltips; virtualise beyond a few hundred rows. |
 | **offline** | cached rows stay readable and marked stale; actions disable with a reason. |
 
-Definitions: `patterns/states.md`.
+Definitions: `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/patterns/states.md`.
 
 ## Common failures
 
@@ -107,7 +107,7 @@ Definitions: `patterns/states.md`.
 - **Destructive action inline with no confirmation.** Mis-clicks delete data.
 - **Six buttons per row.** The scanning column becomes noise.
 - **Proportional figures in numeric columns.** Ragged and incomparable; see
-  `reference/03-typography.md`.
+  `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/03-typography.md`.
 - **Horizontal scroll by accident** rather than by decision.
 - **No sticky header.** Column identity lost after one screen of scrolling.
 - **Inconsistent row-click behaviour.**
@@ -118,6 +118,6 @@ Definitions: `patterns/states.md`.
 |---|---|
 | **Linear** | keyboard navigation, grouping, density, speed |
 | **Stripe Dashboard** | filtering, the balance of columns, pagination at scale |
-| **Carbon data table** | the most complete public table spec — `systems/carbon.md` |
+| **Carbon data table** | the most complete public table spec — `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/carbon.md` |
 | **Polaris resource list** | the index-table vs resource-list distinction |
 | **Airtable** | column sizing, inline editing, view switching |

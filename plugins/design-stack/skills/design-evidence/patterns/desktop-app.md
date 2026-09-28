@@ -12,7 +12,7 @@ they are manipulating an artifact directly, for hours, with expertise.
 built from web component defaults — generous padding, touch-sized targets,
 hover cards, page scroll, modal dialogs — will feel wrong to its users in ways
 they immediately notice and cannot always articulate. Read
-`systems/fluent.md` alongside this; it is the only major system that treats
+`${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/fluent.md` alongside this; it is the only major system that treats
 desktop as first-class.
 
 ## Canonical structure
@@ -88,8 +88,8 @@ wastes the space the tool needs, and these users are pointer users with
 expertise — precision is available and expected.
 
 Compact controls, tight spacing, small type in panels. Take density guidance
-from `systems/fluent.md`, and note the trade-off is deliberate: this violates
-`reference/07-mobile.md`, which is correct for touch and not for this.
+from `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/fluent.md`, and note the trade-off is deliberate: this violates
+`${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/07-mobile.md`, which is correct for touch and not for this.
 
 Panels should be **scannable by position**. Experts learn where a control lives
 and go straight to it; controls that move between contexts destroy that.
@@ -103,7 +103,7 @@ For an expert, the keyboard *is* the tool. The mouse selects; keys act.
 - **Modifiers for variants.** Shift-constrain, Alt-duplicate, Ctrl-snap-off.
 - **Discoverability**: shortcuts in tooltips and menus, and a searchable
   shortcut reference. A command palette solves discovery for the long tail; see
-  `systems/primer.md`.
+  `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/primer.md`.
 - **Remappable**, ideally. Experts arrive with muscle memory from a competitor.
 - **Space to pan** while held — near-universal, and users will try it.
 
@@ -151,7 +151,7 @@ that cannot hit frame rate is designing something that will feel bad.
 | **overflow** | 500 layers, a four-hour timeline, a 12,000px canvas, deep group nesting. Virtualise, collapse, and provide search over the layer or track list. |
 | **offline** | for collaborative tools the important one. Keep working locally, show sync state clearly, and handle the conflict on reconnect rather than silently discarding one side. |
 
-Definitions: `patterns/states.md`.
+Definitions: `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/patterns/states.md`.
 
 ## Common failures
 

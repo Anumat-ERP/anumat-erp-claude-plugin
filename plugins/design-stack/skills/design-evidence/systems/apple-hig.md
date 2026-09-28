@@ -47,8 +47,8 @@ accessibility support is substantial.
 
 You are building for the web or for Android. Web apps that imitate iOS controls
 land in an uncanny middle: not native, and unfamiliar to web users. For
-cross-platform mobile see `systems/material.md`, and for the genuine divergences
-see `reference/07-mobile.md`.
+cross-platform mobile see `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/material.md`, and for the genuine divergences
+see `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/07-mobile.md`.
 
 ## Docs
 

@@ -10,7 +10,7 @@ reader. Appearance is neither; that belongs to `frontend-design`.
 ## Interactive states
 
 Every interactive element needs all seven. These are **per-control** states and
-are distinct from the six **per-screen** states in `patterns/states.md` —
+are distinct from the six **per-screen** states in `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/patterns/states.md` —
 conflating the two lists is a common error, and neither substitutes for the
 other.
 
@@ -48,7 +48,7 @@ on `Enter` and `Space`. An icon-only button needs an accessible name.
 
 **Input.** Label, the field, optional helper text, optional error text, all
 programmatically associated. The label is always present — see
-`reference/05-forms.md` on why a placeholder is not a label.
+`${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/05-forms.md` on why a placeholder is not a label.
 
 **Select.** A native `select` unless you need multi-select, search, or rich
 options. A custom one owes you: type-ahead, arrow navigation, `Escape` to
@@ -111,7 +111,7 @@ about your domain — a `Button` with an `isCheckoutStep` prop — has stopped
 being a primitive and will accumulate more such props forever.
 
 Rather than reasoning about decomposition in the abstract, read a real
-inventory: `systems/STORYBOOKS.md` covers how to read a Storybook's component
+inventory: `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/STORYBOOKS.md` covers how to read a Storybook's component
 tree, which is a mature team's answer to exactly this question.
 
 ## Common failures

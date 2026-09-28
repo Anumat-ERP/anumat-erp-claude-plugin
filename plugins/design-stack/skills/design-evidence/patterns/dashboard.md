@@ -7,7 +7,7 @@ Usually one of three: *is anything wrong?*, *how are we doing?*, or *what
 changed?*
 
 Cross-cutting rules — metric hierarchy, KPI tile anatomy, chart-vs-table,
-baselines, staleness — are in `reference/06-dashboard.md`. This file covers the
+baselines, staleness — are in `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/06-dashboard.md`. This file covers the
 screen's composition. Chart encoding belongs to the `dataviz` skill.
 
 ## Canonical structure
@@ -17,7 +17,7 @@ screen's composition. Chart encoding belongs to the `dataviz` skill.
 2. Primary metric row         one dominant number, 2-4 supporting
 3. Trend section              how the primary metric moved
 4. Breakdown                  by segment, source, category
-5. Detail table               the rows behind the numbers  → patterns/data-table.md
+5. Detail table               the rows behind the numbers  → ${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/patterns/data-table.md
 ```
 
 **Why this order.** It matches the sequence of questions a user actually asks:
@@ -52,7 +52,7 @@ smallest supported width. Everything else can be below.
 
 If you cannot fit the headline above the fold, there are too many things
 competing to be the headline — which means the hierarchy decision has not been
-made. See `reference/06-dashboard.md`.
+made. See `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/06-dashboard.md`.
 
 ## Comparison baselines
 
@@ -87,7 +87,7 @@ drill-down is the difference between a dashboard and a set of links.
 | **overflow** | very large numbers, very long segment names in a breakdown, a legend with 40 series, a table with 10,000 rows. |
 | **offline** | show cached values clearly marked with their age. A stale number presented as current is worse than no number. |
 
-Definitions: `patterns/states.md`.
+Definitions: `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/patterns/states.md`.
 
 ## Common failures
 

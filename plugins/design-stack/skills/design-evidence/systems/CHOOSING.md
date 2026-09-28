@@ -14,20 +14,20 @@ design system is how things behave and what they are called.
 
 **If the project already has a system, use it.** These profiles then serve as a
 cross-check: where the house system is silent, they tell you what a mature team
-decided. See `systems/STORYBOOKS.md`.
+decided. See `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/STORYBOOKS.md`.
 
 ## The map
 
 | Domain | System |
 |---|---|
-| Native Apple platforms | `systems/apple-hig.md` |
-| Cross-platform mobile | `systems/material.md` |
-| Desktop tools, productivity software | `systems/fluent.md` |
-| Enterprise, data-dense applications | `systems/carbon.md` |
-| SaaS admin, merchant-facing tools | `systems/polaris.md` |
-| Developer tools | `systems/primer.md` |
-| Project and issue tracking | `systems/atlassian.md` |
-| Public services, forms, accessibility-critical | `systems/govuk.md` |
+| Native Apple platforms | `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/apple-hig.md` |
+| Cross-platform mobile | `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/material.md` |
+| Desktop tools, productivity software | `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/fluent.md` |
+| Enterprise, data-dense applications | `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/carbon.md` |
+| SaaS admin, merchant-facing tools | `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/polaris.md` |
+| Developer tools | `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/primer.md` |
+| Project and issue tracking | `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/atlassian.md` |
+| Public services, forms, accessibility-critical | `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/govuk.md` |
 
 ## Why each pairing holds
 
@@ -95,4 +95,4 @@ choice is reviewable; an unstated one is not.
 
 **Forms, whatever you picked.** Borrow GOV.UK's form and error patterns
 regardless of the rest. Nothing else comes close, and forms are where products
-lose users. See `reference/05-forms.md`.
+lose users. See `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/05-forms.md`.

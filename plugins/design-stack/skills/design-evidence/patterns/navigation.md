@@ -9,7 +9,7 @@ the user's model of what the product contains.
 ## Canonical structure
 
 The shell determines the layout. The four archetypes are in
-`reference/02-layout.md`; this is what goes in them.
+`${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/02-layout.md`; this is what goes in them.
 
 ```
 Primary      the product's top-level destinations — persistent, always visible
@@ -35,8 +35,8 @@ structure and navigate by search instead — at which point the hierarchy is
 costing you maintenance without earning its keep.
 
 If you need more depth, the product probably needs search as a primary
-navigation mechanism rather than more nesting. See `patterns/search-filter.md`.
-`systems/atlassian.md` is the best source on genuinely deep hierarchies, where
+navigation mechanism rather than more nesting. See `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/patterns/search-filter.md`.
+`${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/atlassian.md` is the best source on genuinely deep hierarchies, where
 they are unavoidable.
 
 ## Showing location
@@ -62,7 +62,7 @@ becomes a fallback for discovery.
 When that happens, make search prominent rather than tucked in a corner, give
 it a keyboard shortcut, and support it from anywhere. A command palette is the
 mature form of this and is expected in developer and professional tools; see
-`systems/primer.md`.
+`${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/primer.md`.
 
 ## Responsive collapse
 
@@ -83,7 +83,7 @@ interface goes from complete to a hamburger with nothing in between, wasting
 the medium widths where a rail or icon nav would work well.
 
 On touch, primary navigation belongs at the bottom, in the thumb arc. See
-`reference/07-mobile.md`.
+`${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/07-mobile.md`.
 
 ## The account menu
 
@@ -106,7 +106,7 @@ real and costly error, and it happens when the only indicator is one click away.
 | **overflow** | 200 projects in a sidebar, a 60-character workspace name, 5 levels of nesting. Scroll within the nav region, truncate names with tooltips, cap the depth. |
 | **offline** | navigation still works for cached destinations; mark what is unavailable rather than letting it fail on click. |
 
-Definitions: `patterns/states.md`.
+Definitions: `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/patterns/states.md`.
 
 ## Common failures
 

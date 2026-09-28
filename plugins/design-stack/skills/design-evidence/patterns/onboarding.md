@@ -86,7 +86,7 @@ is shown step one on return will not complete it twice.
 | **overflow** | very long names, huge imports, a team invite list of 200. Imports need progress and a partial-failure report. |
 | **offline** | detect it before a multi-step form silently fails. Losing onboarding input loses the user. |
 
-Definitions: `patterns/states.md`.
+Definitions: `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/patterns/states.md`.
 
 ## Common failures
 
@@ -116,4 +116,4 @@ Definitions: `patterns/states.md`.
 | **Duolingo** | commitment before account creation; the value is felt first |
 
 For current flows, ask the user to browse Page Flows or Mobbin — Claude cannot
-open them. See `reference/sources.md`.
+open them. See `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/sources.md`.

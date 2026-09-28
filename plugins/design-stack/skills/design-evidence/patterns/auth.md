@@ -62,15 +62,34 @@ The balance is helping the user without helping an attacker enumerate accounts.
 |---|---|
 | Wrong password | "Email or password is incorrect" — deliberately ambiguous |
 | Unknown email, on sign-in | the same message; do not confirm non-existence |
-| Existing email, on sign-up | "An account with this email exists" + a sign-in link — here the information is already implied, and withholding it strands the user |
+| Existing email, on sign-up | a genuine tradeoff — see below |
 | Rate limited | say so, and say for how long |
 | Locked | say so, and say how to unlock |
 
-The sign-up case is the one products get wrong in the cautious direction: a
-generic error there leaves the user unable to proceed in either direction.
-
 Never say "invalid credentials" and nothing else. Never reveal which field was
 wrong on sign-in.
+
+### The sign-up collision is a real tradeoff, not a settled question
+
+Telling the user "an account with this email already exists" is helpful and
+**lets an attacker enumerate your user base** by submitting addresses and
+reading the response. Both halves are true, and which one wins depends on what
+an account is worth.
+
+| Approach | Gives | Costs |
+|---|---|---|
+| **Say it in the response**, with a sign-in link | the user proceeds immediately | anyone can test whether an address is registered |
+| **Respond identically either way**, and send an email — "you already have an account" to an existing address, a verification link to a new one | no enumeration through the form | slower for the user; they must check their inbox |
+
+**Pick by sensitivity.** A consumer productivity tool can reasonably say it: the
+information leaked is low-value and the friction is real. A service where
+holding an account is itself sensitive — health, finance, legal, dating,
+anything political — should use the email path, because "does this person have
+an account here" is the thing being protected.
+
+Whichever you choose, note that timing and rate limits leak too: a response
+that is measurably faster for unknown addresses enumerates just as well as one
+that says so.
 
 ## SSO and social
 
@@ -116,7 +135,7 @@ they had no warning about.
 | **overflow** | long emails, long provider names, 200-character passwords from a manager. Do not cap length below 64 characters. |
 | **offline** | detect before submit and say so. A hanging sign-in reads as a wrong password, and the user will start resetting. |
 
-Definitions: `patterns/states.md`.
+Definitions: `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/patterns/states.md`.
 
 ## Common failures
 

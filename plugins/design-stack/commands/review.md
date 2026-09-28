@@ -6,7 +6,7 @@ argument-hint: [files, component, or screen to review — defaults to the curren
 Audit: **$ARGUMENTS** — or, if no argument was given, the UI touched by the
 current diff.
 
-Execute `skills/design-stack/reference/10-design-review.md` in its section
+Execute `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/10-design-review.md` in its section
 order. Read it now; do not work from memory of it.
 
 ## Scope

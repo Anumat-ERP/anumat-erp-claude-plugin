@@ -1,6 +1,6 @@
 ---
 name: design-stack
-description: Use when designing or building any screen, page, form, dashboard, data table, admin panel, or app flow, and when restructuring existing UI — supplies canonical screen structure from shipped products, selects the right design system for the domain, and requires every interface state to be handled. Not for pure styling tweaks or post-build polish.
+description: Use when designing or building any screen, page, form, dashboard, data table, admin panel, or app flow, and when restructuring existing UI. Also use for feature requests phrased as needs or outcomes — "users need a way to…", "add support for…", "let people…", "we need somewhere to…" — which are screens described without the word. Supplies canonical structure from shipped products, selects a design system for the domain, and requires every interface state to be handled. Not for pure styling tweaks or post-build polish.
 ---
 
 # Design Stack
@@ -35,7 +35,7 @@ EVIDENCE  → read patterns/<screen-type>.md; structure is recalled, not invente
 SYSTEM    → pick one design system and name why
 STATES    → all six enumerated; this is a gate, not advice
 BUILD     → hand appearance to frontend-design; structure comes from above
-REVIEW    → reference/10-design-review.md
+REVIEW    → ${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/10-design-review.md
 ```
 
 **BRIEF.** Four questions: who is this for, what problem does it solve, what is
@@ -50,14 +50,14 @@ its component tree: that is the available inventory and the real prop surface.
 A component that exists gets reused, not rebuilt. The house system outranks
 every external reference in this plugin — an imported convention that
 contradicts it is worse than no convention. Procedure in
-`systems/STORYBOOKS.md`.
+`${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/STORYBOOKS.md`.
 
 **EVIDENCE.** Read the matching playbook in `patterns/` *before* proposing
 structure. If no playbook matches, say so out loud, name the nearest structural
 analogue, and use that — never invent silently, because silent invention is
 indistinguishable from knowledge in the output.
 
-**SYSTEM.** Pick exactly one from `systems/CHOOSING.md` and give one sentence
+**SYSTEM.** Pick exactly one from `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/CHOOSING.md` and give one sentence
 of justification. You are borrowing conventions — interaction patterns,
 terminology, component behaviour — not visual identity.
 
@@ -65,7 +65,7 @@ terminology, component behaviour — not visual identity.
 
 **BUILD.** Structure from the stages above; appearance from `frontend-design`.
 
-**REVIEW.** Run `reference/10-design-review.md`, or `/design-stack:review`.
+**REVIEW.** Run `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/10-design-review.md`, or `/design-stack:review`.
 
 ## The states gate
 
@@ -82,24 +82,24 @@ This is the gate because shipping only the happy path is the single largest
 gap between generated UI and shipped UI. The happy path is the easy 20% of the
 work and the part that looks finished in a screenshot; the other five states
 are where real users spend their worst minutes. Definitions and sub-cases are
-in `patterns/states.md` — note that "empty" alone has three distinct forms that
+in `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/patterns/states.md` — note that "empty" alone has three distinct forms that
 need three different messages.
 
 ## Reference index
 
 | Read this when | File |
 |---|---|
-| Setting up spacing, radius, elevation, density, or tokens | `reference/01-foundations.md` |
-| Choosing a grid, breakpoints, or an app shell | `reference/02-layout.md` |
-| Building a type scale or handling numbers and overflow | `reference/03-typography.md` |
-| Building or composing any interactive component | `reference/04-components.md` |
-| Any form: fields, validation, errors, saving | `reference/05-forms.md` |
-| Laying out metrics, KPIs, or analytics | `reference/06-dashboard.md` |
-| Designing for touch, small screens, or native mobile | `reference/07-mobile.md` |
-| Adding transitions, loading choreography, or animation | `reference/08-motion.md` |
-| Always, before calling anything done | `reference/09-accessibility.md` |
-| Auditing finished UI | `reference/10-design-review.md` |
-| Looking for an external reference to study | `reference/sources.md` |
+| Setting up spacing, radius, elevation, density, or tokens | `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/01-foundations.md` |
+| Choosing a grid, breakpoints, or an app shell | `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/02-layout.md` |
+| Building a type scale or handling numbers and overflow | `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/03-typography.md` |
+| Building or composing any interactive component | `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/04-components.md` |
+| Any form: fields, validation, errors, saving | `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/05-forms.md` |
+| Laying out metrics, KPIs, or analytics | `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/06-dashboard.md` |
+| Designing for touch, small screens, or native mobile | `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/07-mobile.md` |
+| Adding transitions, loading choreography, or animation | `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/08-motion.md` |
+| Always, before calling anything done | `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/09-accessibility.md` |
+| Auditing finished UI | `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/10-design-review.md` |
+| Looking for an external reference to study | `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/sources.md` |
 
 ## When not to use this skill
 

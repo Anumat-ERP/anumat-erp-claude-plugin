@@ -10,7 +10,7 @@ stretches, where the job is to see and act on a great deal of information.
 - **The data table is the centrepiece.** Carbon's table is the most thoroughly
   specified in any public system — sorting, selection, batch actions, expansion,
   nested rows, sticky headers, density modes, pagination, and every combination
-  of them. Read it before building any table; see `patterns/data-table.md`.
+  of them. Read it before building any table; see `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/patterns/data-table.md`.
 - **Multiple density modes as a first-class feature.** Table rows come in
   defined heights and the user can switch. This treats density as a user
   preference rather than a designer's guess, which is correct for tools whose
@@ -48,12 +48,12 @@ Especially when tables are the core of the product.
 
 Building a consumer product or a marketing site — Carbon's restraint reads as
 austerity to casual users. Also a poor fit for touch-first mobile, where its
-density works against you; see `reference/07-mobile.md`.
+density works against you; see `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/07-mobile.md`.
 
 ## Docs
 
 <https://carbondesignsystem.com> — fetchable.
-Storybook: <https://react.carbondesignsystem.com> — see `systems/STORYBOOKS.md`.
+Storybook: <https://react.carbondesignsystem.com> — see `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/STORYBOOKS.md`.
 
 Look up: the data table in full, density specifications, notification severity
 rules, and the accessibility conformance notes on any component you adopt.

@@ -45,7 +45,7 @@ Windows-targeted software, or any tool whose users sit in it for hours. Also
 pick it for a web app that behaves like a desktop tool rather than like a
 website.
 
-Pair it with `patterns/desktop-app.md` for editor-shaped products — timeline,
+Pair it with `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/patterns/desktop-app.md` for editor-shaped products — timeline,
 canvas, and inspector layouts have their own rules that no general system
 covers.
 
@@ -53,12 +53,12 @@ covers.
 
 Building consumer mobile or a marketing site. Fluent's density and command
 surfaces will read as intimidating to occasional users. Use
-`systems/material.md` or `systems/polaris.md`.
+`${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/material.md` or `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/polaris.md`.
 
 ## Docs
 
 <https://fluent2.microsoft.design> — fetchable.
-Storybook: <https://react.fluentui.dev> — see `systems/STORYBOOKS.md`.
+Storybook: <https://react.fluentui.dev> — see `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/STORYBOOKS.md`.
 
 Look up: command bar overflow behaviour, density specifications, keyboard
 accelerator conventions, and panel vs dialog guidance.

@@ -18,7 +18,7 @@ inside your interface. Competent users, not technical ones.
   section, and page. Simple, and it scales.
 - **Settings at scale.** Polaris has real guidance for products with a hundred
   settings, which is where most systems stop helping; see
-  `patterns/settings.md`.
+  `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/patterns/settings.md`.
 - **Content guidelines that are unusually good.** Polaris specifies voice,
   button labelling, error wording, and how to write for a non-technical
   business user. This is the most borrowable part of the system and applies
@@ -48,9 +48,9 @@ the best public writing standards for product UI.
 
 ## Do not pick it when
 
-Building a developer tool (`systems/primer.md` fits better), a data-analysis
-product (`systems/carbon.md`), or a consumer mobile app
-(`systems/material.md`). Polaris also carries visible Shopify character, so
+Building a developer tool (`${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/primer.md` fits better), a data-analysis
+product (`${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/carbon.md`), or a consumer mobile app
+(`${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/material.md`). Polaris also carries visible Shopify character, so
 strip the visual identity and take the structure — appearance is the
 `frontend-design` skill's call.
 

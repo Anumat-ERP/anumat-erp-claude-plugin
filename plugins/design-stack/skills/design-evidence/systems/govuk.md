@@ -17,7 +17,7 @@ level of literacy and confidence, and the research is published.
 - **The error summary pattern.** On failed submit: a summary at the top listing
   every error as a link to its field, *plus* inline errors at each field, with
   focus moved to the summary. This is the best-tested error pattern anywhere and
-  is worth copying verbatim; see `reference/05-forms.md`.
+  is worth copying verbatim; see `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/05-forms.md`.
 - **Labels above fields, always visible.** Never placeholders as labels.
 - **Question-first pages.** The heading *is* the question, in plain language.
 - **Field width signals expected input.** A postcode field is postcode-sized.
@@ -49,7 +49,7 @@ able to demonstrate rather than assert.
 **Borrow its forms and error patterns whatever else you pick.** This is the
 single highest-value cross-system recommendation in this plugin: nothing else
 comes close on forms, and forms are where products lose users. See
-`systems/CHOOSING.md`.
+`${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/CHOOSING.md`.
 
 ## Do not pick it when
 

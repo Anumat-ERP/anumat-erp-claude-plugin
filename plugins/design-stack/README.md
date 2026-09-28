@@ -18,9 +18,11 @@ Three plugins, three questions, no overlap.
 | `frontend-design` | What should it look like, and how do I avoid looking templated? | While building |
 | `impeccable` | Is the built result up to craft standard? | After building |
 
-Where the boundary is close, design-stack defers by name — and the `aesthetics`
-validator check enforces it mechanically, failing the build if appearance
-vocabulary appears in this plugin's files.
+Where the boundary is close, design-stack defers by name. The `aesthetics`
+validator check backs that up by failing the build on a list of appearance
+terms across every skill and command file — a tripwire for the obvious cases,
+not a proof. Prose that gives visual direction without using a listed word will
+pass, so the boundary still depends on the writing.
 
 ## The pipeline
 

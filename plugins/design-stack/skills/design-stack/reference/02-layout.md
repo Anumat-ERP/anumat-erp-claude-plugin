@@ -17,7 +17,7 @@ readable column with a navigation rail; expressing that as "3 of 12 plus 9 of
 12" adds vocabulary without adding structure. The grid is a tool for aligning
 repeated units, not a mandatory substrate.
 
-**Gutters** come from the spacing scale in `reference/01-foundations.md`, and
+**Gutters** come from the spacing scale in `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/01-foundations.md`, and
 scale with viewport: tighter on phones where every pixel of content width
 matters, wider on desktop where the eye needs help grouping.
 
@@ -52,7 +52,7 @@ Getting this wrong is the most expensive layout mistake, because the shell
 determines the navigation model, which determines what the user believes the
 product *is*. A split shell says "work through these"; a canvas shell says
 "make something". For canvas products specifically, see
-`patterns/desktop-app.md` — web layout conventions actively mislead there.
+`${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/patterns/desktop-app.md` — web layout conventions actively mislead there.
 
 Shells also compose: a sidebar shell whose content area is a split pane is
 common and fine. What does not work is switching shell between sections of one
@@ -62,7 +62,7 @@ product, which destroys the user's spatial model.
 
 Unbounded text columns fail: past roughly 80 characters the eye loses the line
 return, and the reader re-reads lines without noticing. Cap prose at 60–75
-characters. See `reference/03-typography.md` for the measure in detail.
+characters. See `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/03-typography.md` for the measure in detail.
 
 Different content wants different caps in the same layout:
 
@@ -104,4 +104,4 @@ inconsistent horizontal gaps are usually seen one at a time.
 - **Shell switching between sections.** Breaks the user's mental map of where
   things are.
 - **Nav that collapses everything at once.** Responsive collapse has an order;
-  see `patterns/navigation.md`.
+  see `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/patterns/navigation.md`.

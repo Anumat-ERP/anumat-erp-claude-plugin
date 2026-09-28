@@ -91,7 +91,7 @@ Where they genuinely diverge:
 
 | | iOS | Android |
 |---|---|---|
-| Back | no system back; in-app back, top-left | system back gesture and button |
+| Back | no system back *button*; provide in-app back, top-left — but the edge-swipe back gesture is reserved by the OS | system back gesture and button, both reserved |
 | Navigation | tab bar at bottom | bottom nav bar, or drawer |
 | Sharing | share sheet | share intent |
 | Dates, pickers, switches | platform controls | platform controls |
@@ -106,8 +106,8 @@ system controls come from the other hundred apps on their phone. Their
 expectations about your content come from you.
 
 The single most common cross-platform failure is shipping an iOS app on Android
-that ignores the system back gesture. See `systems/apple-hig.md` and
-`systems/material.md`.
+that ignores the system back gesture. See `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/apple-hig.md` and
+`${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/material.md`.
 
 ## Common failures
 

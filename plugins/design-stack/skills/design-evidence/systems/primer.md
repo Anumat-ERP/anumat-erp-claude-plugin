@@ -22,7 +22,7 @@ operation, dense information, and a high tolerance for complexity.
 - **Functional colour.** Status, diff, and state colours carry specific
   meanings, always paired with text or icon rather than standing alone.
 - **Excellent empty and loading states** across the component set — worth
-  studying against `patterns/states.md`.
+  studying against `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/patterns/states.md`.
 
 ## Where it is opinionated
 
@@ -45,13 +45,13 @@ technical internal tooling where the audience is your own engineers.
 
 Your users are not technical. Primer's density, terminology, and
 keyboard-centred design assume familiarity that a general audience does not
-have; use `systems/polaris.md` for business users or `systems/material.md` for
+have; use `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/polaris.md` for business users or `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/material.md` for
 consumers.
 
 ## Docs
 
 <https://primer.style> — fetchable.
-Storybook: <https://primer.style/components> — see `systems/STORYBOOKS.md`.
+Storybook: <https://primer.style/components> — see `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/STORYBOOKS.md`.
 
 Look up: the command palette pattern, code and diff components, keyboard
 shortcut conventions, and the empty-state guidance.

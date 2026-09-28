@@ -18,7 +18,7 @@ decision a field's answer changes, remove it.
 
 **Order by the user's mental model, not the database schema.** Group related
 fields adjacently and separate groups with space, not just headings — see
-`reference/02-layout.md` on proximity as the strongest grouping signal.
+`${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/02-layout.md` on proximity as the strongest grouping signal.
 
 **One thing per page for long or unfamiliar flows.** Splitting a long form into
 short steps reduces abandonment, makes errors easier to place, and makes
@@ -131,7 +131,7 @@ without losing input. Validate each step on leaving it, not all at the end.
 Save partial progress if the flow is long enough that a user might leave.
 
 Do not use tabs for steps — tabs mean alternate views of one thing, steps mean
-sequence. See `reference/04-components.md`.
+sequence. See `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/04-components.md`.
 
 ## Common failures
 

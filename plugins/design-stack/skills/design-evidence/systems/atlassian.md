@@ -14,7 +14,7 @@ users must navigate, filter, and cross-link.
 - **Saved filters and views as first-class objects.** A filter is something a
   user names, saves, shares, and returns to — not a transient UI state. Any
   product where users repeatedly narrow a large set should borrow this; see
-  `patterns/search-filter.md`.
+  `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/patterns/search-filter.md`.
 - **Multiple views over one dataset** — list, board, timeline, calendar — with
   filter state preserved across the switch. The view is a lens, not a separate
   page.
@@ -51,7 +51,7 @@ through states and several people touch them.
 The product is flat rather than hierarchical, or single-user. Atlassian's
 patterns cost complexity that only pays off when there is genuine hierarchy and
 collaboration. Also not a fit for analysis-heavy products — use
-`systems/carbon.md`.
+`${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/carbon.md`.
 
 ## Docs
 

@@ -11,7 +11,7 @@ vocabulary.
 - **Elevation as a coherent model.** Surfaces sit at defined heights, and
   height determines shadow, tint, and stacking. Material 3 shifts much of this
   from shadow to surface tinting, which works far better in dark mode — see
-  `reference/01-foundations.md`.
+  `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/01-foundations.md`.
 - **Dynamic colour and tonal palettes.** A generated palette from a seed
   colour, with roles (`primary`, `on-primary`, `surface`, `on-surface`) rather
   than raw values. This is a strong model to borrow even outside Material.
@@ -24,7 +24,7 @@ vocabulary.
   cross-platform failure there is.
 - **Touch targets at 48dp** with 8dp between them.
 - **Motion with specified duration and easing tokens**, tied to the size of the
-  transition — see `reference/08-motion.md`.
+  transition — see `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/08-motion.md`.
 
 ## Where it is opinionated
 
@@ -49,8 +49,8 @@ component implementations are mature.
 
 Building a data-dense professional tool — Material's spacing and component
 sizes assume touch and occasional use, and experts will find it wasteful. Use
-`systems/carbon.md` or `systems/fluent.md`. Also avoid it on iOS, where the
-controls will read as foreign; see `systems/apple-hig.md`.
+`${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/carbon.md` or `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/fluent.md`. Also avoid it on iOS, where the
+controls will read as foreign; see `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/apple-hig.md`.
 
 ## Docs
 

@@ -15,10 +15,22 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const SKILL_BODY_MAX = { 'design-stack': 150, 'design-evidence': 80 };
 
 /**
- * Matches reference/foo.md, patterns/foo.md, systems/FOO.md in skill bodies,
- * whether written bare, in backticks, or as a markdown link target.
+ * The one path form allowed in skill and command content.
+ *
+ * Anchored to ${CLAUDE_PLUGIN_ROOT} because nothing else resolves reliably:
+ * a command runs with cwd set to the USER'S project, and a bare `patterns/x.md`
+ * inside a nested content file is relative to a directory the reader has to
+ * guess. One absolute form works identically from every file.
  */
-const REF_PATTERN = /(?:reference|patterns|systems)\/[A-Za-z0-9._-]+\.md/g;
+const REF_PATTERN = /\$\{CLAUDE_PLUGIN_ROOT\}\/[A-Za-z0-9._/-]+\.md/g;
+
+/**
+ * The ambiguous form this plugin used to use. Matched so it can be rejected —
+ * these paths look correct, pass a naive existence check against the owning
+ * skill, and resolve to nothing at runtime.
+ */
+const BARE_REF_PATTERN =
+  /(?<![\w/$}-])(?:reference|patterns|systems)\/[A-Za-z0-9._-]+\.md/g;
 
 /** Directories inside a skill that hold routed content files. */
 const CONTENT_DIRS = ['reference', 'patterns', 'systems'];
@@ -143,6 +155,28 @@ function checkManifests() {
   return pluginDirs;
 }
 
+/** Strip the ${CLAUDE_PLUGIN_ROOT}/ prefix to get a plugin-relative path. */
+const stripRoot = (ref) => ref.replace('${CLAUDE_PLUGIN_ROOT}/', '');
+
+/**
+ * Every routed path in one file: anchored ones must resolve from the plugin
+ * root, and bare ones are rejected outright as unresolvable-at-runtime.
+ */
+function checkRefsIn(src, text, pdir, check) {
+  for (const ref of [...new Set(text.match(REF_PATTERN) ?? [])].sort()) {
+    if (!existsSync(join(pdir, stripRoot(ref)))) {
+      fail(check, `${rel(src)} routes to ${ref}, which does not exist`);
+    }
+  }
+  for (const bare of [...new Set(text.match(BARE_REF_PATTERN) ?? [])].sort()) {
+    fail(
+      check,
+      `${rel(src)} uses the bare path "${bare}" — ambiguous at runtime. ` +
+        `Anchor it: \${CLAUDE_PLUGIN_ROOT}/skills/<skill>/${bare}`,
+    );
+  }
+}
+
 /**
  * Split a markdown file into its YAML frontmatter and its body.
  * @returns {{front: Record<string,string>, body: string} | null}
@@ -234,12 +268,7 @@ function checkSkills(pluginDirs) {
       // surely as one in SKILL.md.
       const sources = [skillMd, ...CONTENT_DIRS.flatMap((d) => mdFiles(join(skillDir, d)))];
       for (const src of sources) {
-        const text = src === skillMd ? body : readFileSync(src, 'utf8');
-        for (const ref of [...new Set(text.match(REF_PATTERN) ?? [])].sort()) {
-          if (!skillDirs.some((d) => existsSync(join(d, ref)))) {
-            fail(refCheck, `${rel(src)} routes to ${ref}, which exists in no skill of this plugin`);
-          }
-        }
+        checkRefsIn(src, src === skillMd ? body : readFileSync(src, 'utf8'), pdir, refCheck);
       }
     }
   }
@@ -258,21 +287,45 @@ function checkSkills(pluginDirs) {
 function checkAesthetics(pluginDirs) {
   const check = 'aesthetics';
   for (const pdir of pluginDirs) {
-    const skillDir = join(pdir, 'skills', 'design-stack');
-    if (!isDir(skillDir)) continue;
-    const files = [join(skillDir, 'SKILL.md'), ...CONTENT_DIRS.flatMap((d) => mdFiles(join(skillDir, d)))];
-    for (const md of files) {
-      if (!existsSync(md)) continue;
-      const lowered = readFileSync(md, 'utf8').toLowerCase();
-      for (const term of AESTHETIC_TERMS) {
-        if (lowered.includes(term)) {
-          fail(
-            check,
-            `${rel(md)} contains aesthetic term "${term}" — ` +
-              `appearance guidance belongs to the frontend-design skill`,
-          );
+    for (const skillDir of subdirs(join(pdir, 'skills'))) {
+      const files = [
+        join(skillDir, 'SKILL.md'),
+        ...CONTENT_DIRS.flatMap((d) => mdFiles(join(skillDir, d))),
+      ];
+      for (const md of [...files, ...mdFiles(join(pdir, 'commands'))]) {
+        if (!existsSync(md)) continue;
+        const lowered = readFileSync(md, 'utf8').toLowerCase();
+        for (const term of AESTHETIC_TERMS) {
+          if (lowered.includes(term)) {
+            fail(
+              check,
+              `${rel(md)} contains aesthetic term "${term}" — ` +
+                `appearance guidance belongs to the frontend-design skill`,
+            );
+          }
         }
       }
+    }
+  }
+  if (clean(check)) ok(check);
+}
+
+/**
+ * Commands are content too: they route to skill files and they need a
+ * description to appear in the slash-command list.
+ */
+function checkCommands(pluginDirs) {
+  const check = 'commands';
+  for (const pdir of pluginDirs) {
+    const cmdDir = join(pdir, 'commands');
+    if (!isDir(cmdDir)) continue;
+    for (const md of mdFiles(cmdDir)) {
+      const parsed = parseFrontmatter(md, check);
+      if (parsed === null) continue;
+      if (!parsed.front.description) {
+        fail(check, `${rel(md)} frontmatter missing 'description'`);
+      }
+      checkRefsIn(md, parsed.body, pdir, check);
     }
   }
   if (clean(check)) ok(check);
@@ -299,15 +352,20 @@ function checkOrphans(pluginDirs) {
       for (const md of corpus) {
         if (!existsSync(md)) continue;
         for (const ref of readFileSync(md, 'utf8').match(REF_PATTERN) ?? []) {
-          mentioned.add(ref);
+          mentioned.add(stripRoot(ref));
         }
+      }
+    }
+    for (const md of mdFiles(join(pdir, 'commands'))) {
+      for (const ref of readFileSync(md, 'utf8').match(REF_PATTERN) ?? []) {
+        mentioned.add(stripRoot(ref));
       }
     }
 
     for (const skillDir of skillDirs) {
       for (const sub of CONTENT_DIRS) {
         for (const md of mdFiles(join(skillDir, sub))) {
-          const key = `${sub}/${basename(md)}`;
+          const key = `skills/${basename(skillDir)}/${sub}/${basename(md)}`;
           if (!mentioned.has(key)) {
             fail(
               check,
@@ -322,10 +380,74 @@ function checkOrphans(pluginDirs) {
   if (clean(check)) ok(check);
 }
 
+/** WCAG relative luminance. */
+function luminance(hex) {
+  const channels = [1, 3, 5]
+    .map((i) => parseInt(hex.substr(i, 2), 16) / 255)
+    .map((c) => (c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4));
+  return 0.2126 * channels[0] + 0.7152 * channels[1] + 0.0722 * channels[2];
+}
+
+/** WCAG contrast ratio between two hex colours. */
+function contrast(a, b) {
+  const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x);
+  return (hi + 0.05) / (lo + 0.05);
+}
+
+/**
+ * The token example in 01-foundations.md is presented as "the minimum set any
+ * project needs", so people will copy it. It must satisfy the thresholds this
+ * plugin's own review checklist calls BLOCKING — a reference that fails its
+ * own audit teaches the wrong thing twice.
+ */
+const TOKEN_MINIMA = [
+  ['--text-primary', 4.5],
+  ['--text-secondary', 4.5],
+  ['--border-interactive', 3],
+  ['--intent-accent', 3],
+  ['--intent-danger', 3],
+  ['--intent-warning', 3],
+  ['--intent-success', 3],
+];
+
+function checkTokenContrast(pluginDirs) {
+  const check = 'contrast';
+  for (const pdir of pluginDirs) {
+    const md = join(pdir, 'skills', 'design-stack', 'reference', '01-foundations.md');
+    if (!existsSync(md)) continue;
+    const text = readFileSync(md, 'utf8');
+    const value = (name) => new RegExp(`${name}:\\s*(#[0-9a-fA-F]{6})`).exec(text)?.[1];
+
+    const base = value('--surface-base');
+    if (!base) {
+      fail(check, `${rel(md)} has no --surface-base token to measure against`);
+      continue;
+    }
+    for (const [token, minimum] of TOKEN_MINIMA) {
+      const hex = value(token);
+      if (!hex) {
+        fail(check, `${rel(md)} is missing the ${token} token`);
+        continue;
+      }
+      const ratio = contrast(hex, base);
+      if (ratio < minimum) {
+        fail(
+          check,
+          `${rel(md)}: ${token} (${hex}) is ${ratio.toFixed(2)}:1 against ` +
+            `--surface-base (${base}), below the ${minimum}:1 this plugin requires`,
+        );
+      }
+    }
+  }
+  if (clean(check)) ok(check);
+}
+
 function main() {
   const pluginDirs = checkManifests();
   checkSkills(pluginDirs);
   checkAesthetics(pluginDirs);
+  checkCommands(pluginDirs);
+  checkTokenContrast(pluginDirs);
   checkOrphans(pluginDirs);
 
   for (const line of ERRORS) console.log(line);

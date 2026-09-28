@@ -10,13 +10,13 @@ edit application code.
 
 ## Steps
 
-**1. Check the project first.** Follow `systems/STORYBOOKS.md` Part 1: look for
+**1. Check the project first.** Follow `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/STORYBOOKS.md` Part 1: look for
 `.storybook/`, `*.stories.*`, a component package, or a token file. If the
 project has its own inventory, report what already exists and can be reused —
 this outranks every external reference below.
 
 **2. Map the request to a playbook.** Use the routing table in
-`skills/design-evidence/SKILL.md`.
+`${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/SKILL.md`.
 
 If nothing matches, do not invent. Follow the skill's three-step fallback: say
 plainly that no playbook covers this, name the nearest structural analogue and
@@ -25,7 +25,7 @@ useful; a silent one is the failure this plugin exists to prevent.
 
 **3. Read the playbook.** All six sections.
 
-**4. Pick a design system** from `systems/CHOOSING.md`, with one sentence of
+**4. Pick a design system** from `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/CHOOSING.md`, with one sentence of
 justification. If the project already has one, use it and say so.
 
 ## Report
@@ -51,7 +51,7 @@ ones that plausibly apply here.
 **Reference products** — the playbook's study targets. Say plainly that these
 are for the user to browse; do not imply you have looked at them. If current
 screenshots would help, ask the user to browse Mobbin or Refero and paste some
-— see `reference/sources.md`.
+— see `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/sources.md`.
 
 ## Then stop
 

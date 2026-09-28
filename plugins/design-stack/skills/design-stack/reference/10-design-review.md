@@ -15,7 +15,7 @@ a finding — record it before anything else.
 
 ## 1. States coverage — BLOCKING
 
-For every screen in scope, all six states from `patterns/states.md`:
+For every screen in scope, all six states from `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/patterns/states.md`:
 
 - [ ] **empty** — and the right one of the three: first-run, filtered, cleared.
       Using one message for all three is the most common failure here.
@@ -40,7 +40,7 @@ is a missing state.
 - [ ] No unintentional focus trap anywhere.
 - [ ] A skip link reaches `main`.
 
-Reference: `reference/09-accessibility.md`, `reference/04-components.md`.
+Reference: `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/09-accessibility.md`, `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/04-components.md`.
 
 ## 3. Contrast and non-colour signalling — BLOCKING
 
@@ -49,7 +49,7 @@ Reference: `reference/09-accessibility.md`, `reference/04-components.md`.
 - [ ] No meaning carried by colour alone — check in greyscale.
 - [ ] Disabled text still legible, even though the standard exempts it.
 
-Reference: `reference/09-accessibility.md`.
+Reference: `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/09-accessibility.md`.
 
 ---
 
@@ -62,21 +62,21 @@ Reference: `reference/09-accessibility.md`.
 - [ ] Tables have a deliberate narrow-viewport answer, not just overflow.
 - [ ] Keyboard-open state checked on mobile.
 
-Reference: `reference/02-layout.md`, `reference/07-mobile.md`,
-`patterns/data-table.md`.
+Reference: `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/02-layout.md`, `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/07-mobile.md`,
+`${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/patterns/data-table.md`.
 
 ## 5. System consistency
 
 - [ ] **A design system was chosen and named.** If not, that is finding one.
 - [ ] If the project has its own Storybook or component library, existing
-      components were reused rather than rebuilt — `systems/STORYBOOKS.md`.
+      components were reused rather than rebuilt — `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/STORYBOOKS.md`.
 - [ ] Conventions follow the chosen system; deviations are deliberate and
       stated.
 - [ ] Spacing, radius, and elevation come from the scales, not ad hoc.
 - [ ] Nested radii decrease inward.
 - [ ] Tokens named by role, not by value.
 
-Reference: `reference/01-foundations.md`, `systems/CHOOSING.md`.
+Reference: `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/01-foundations.md`, `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/systems/CHOOSING.md`.
 
 ## 6. Structure
 
@@ -89,7 +89,7 @@ Reference: `reference/01-foundations.md`, `systems/CHOOSING.md`.
 - [ ] Content width is appropriate per content type; prose is capped.
 - [ ] Numbers use tabular figures and are right-aligned in columns.
 
-Reference: `reference/02-layout.md`, `reference/03-typography.md`.
+Reference: `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/02-layout.md`, `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/03-typography.md`.
 
 ## 7. Copy
 
@@ -100,14 +100,14 @@ Reference: `reference/02-layout.md`, `reference/03-typography.md`.
 - [ ] Destructive confirmations name the specific item.
 - [ ] No placeholder or lorem text left in.
 
-Reference: `reference/05-forms.md`, `patterns/states.md`.
+Reference: `${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/05-forms.md`, `${CLAUDE_PLUGIN_ROOT}/skills/design-evidence/patterns/states.md`.
 
 ---
 
 ## Reporting
 
 ```
-BLOCKING  <file>:<line> — <rule>  (reference/09-accessibility.md)
+BLOCKING  <file>:<line> — <rule>  (${CLAUDE_PLUGIN_ROOT}/skills/design-stack/reference/09-accessibility.md)
           <what is wrong and what a user experiences>
 
 <severity> <file>:<line> — <rule>  (<reference file>)
