@@ -93,8 +93,12 @@ machine-readable, not only human-browsable.
 | Extracting shared code, or designing an exports map | `${CLAUDE_PLUGIN_ROOT}/skills/monorepo-stack/reference/04-shared-packages.md` |
 | Setting up Storybook or writing stories | `${CLAUDE_PLUGIN_ROOT}/skills/monorepo-stack/reference/05-storybook.md` |
 | Deciding what to test and at which layer | `${CLAUDE_PLUGIN_ROOT}/skills/monorepo-stack/reference/06-testing.md` |
-| Naming, versioning, ports, or per-app agent files | `${CLAUDE_PLUGIN_ROOT}/skills/monorepo-stack/reference/07-conventions.md` |
+| Naming, versioning, ports, ADRs, commit conventions | `${CLAUDE_PLUGIN_ROOT}/skills/monorepo-stack/reference/07-conventions.md` |
 | Adopting any of this in a repo that already exists | `${CLAUDE_PLUGIN_ROOT}/skills/monorepo-stack/reference/08-brownfield.md` |
+| **Implementing a feature** — constants, naming, functions, types | `${CLAUDE_PLUGIN_ROOT}/skills/monorepo-stack/reference/09-code-quality.md` |
+| Deciding where logic lives, or crossing the server/client line | `${CLAUDE_PLUGIN_ROOT}/skills/monorepo-stack/reference/10-app-architecture.md` |
+| Reaching for a design pattern — and checking you need one | `${CLAUDE_PLUGIN_ROOT}/skills/monorepo-stack/reference/11-patterns.md` |
+| Adding a business capability, or module vs package | `${CLAUDE_PLUGIN_ROOT}/skills/monorepo-stack/reference/12-modules.md` |
 
 ## When not to use this skill
 

@@ -17,6 +17,11 @@ each plugin you want by name.
 | Plugin | What it does | Install |
 |---|---|---|
 | **design-stack** | The research and evidence layer for UI work: canonical screen playbooks, design-system selection, and a hard gate on interface states. | `/plugin install design-stack@chamrong` |
+| **monorepo-stack** | Scaffolds and maintains a Bun + Turborepo monorepo: apps, business capability modules, shared packages, and Storybook as a first-class layer. | `/plugin install monorepo-stack@chamrong` |
+
+The two are designed to meet: `monorepo-stack` creates `packages/ui` and its
+Storybook; `design-stack` reads them to learn what components already exist
+before designing anything new.
 
 ## Adding a plugin
 
