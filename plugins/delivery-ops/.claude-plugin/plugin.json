@@ -1,0 +1,12 @@
+{
+  "name": "delivery-ops",
+  "description": "Operating and delivery documentation for teams: SOPs and work instructions, RACI and escalation matrices, and work breakdown from portfolio to sub-task with Definition of Ready/Done, acceptance criteria, estimation, and Jira, Linear or GitHub Projects setup and CSV import.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Chamrong Thor",
+    "email": "thorchamrong.dev@gmail.com"
+  },
+  "homepage": "https://github.com/Anumat-ERP/anumat-erp-claude-plugin/tree/main/plugins/delivery-ops",
+  "repository": "https://github.com/Anumat-ERP/anumat-erp-claude-plugin",
+  "license": "MIT"
+}

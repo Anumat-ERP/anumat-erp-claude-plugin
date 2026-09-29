@@ -12,9 +12,11 @@ three-month migration hides the plan.
 | A sponsor needs the business case: cost, benefit, risk | BRD | `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/brd.md` |
 | We agreed to build it; define what it must do and for whom | PRD | `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/prd.md` |
 | Break a feature into work items with acceptance criteria | User stories | `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/user-stories.md` |
+| Stakeholders need to agree what each screen and function does | FS | `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/functional-spec.md` |
 | Requirements must be numbered, traced, and signed off (contract, regulator, supplier) | SRS | `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/srs.md` |
 | "How fast / how available / how secure must it be?" | NFR spec | `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/nfr.md` |
 | A change needs review before building: weeks of work, several teams, hard to reverse | Design doc / RFC | `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/design-doc.md` |
+| Engineers need the concrete implementation plan for one feature | TS | `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/technical-spec.md` |
 | One architecture decision was made (or must be) and should be recorded | ADR (short) | `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/adr-nygard.md` |
 | One decision with several options to weigh explicitly | ADR (MADR) | `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/adr-madr.md` |
 | Document the whole system's architecture for the long term | arc42 | `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/arc42.md` |
@@ -50,6 +52,23 @@ User-facing product documentation (tutorials, how-to guides, reference,
 explanation) is not a template here. Structure it with
 `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/reference/diataxis.md`.
 
+## The document chain
+
+```
+PRD → FS (SRS if formal) → design doc/SDD → TS → test plan
+```
+
+The PRD says why and for whom. The FS says what the system does, screen by
+screen and function by function. The SRS restates that as formal, numbered
+requirements when a contract or regulator needs them. The design doc (or the
+SDD, for a formal whole-system description) settles the approach and its
+trade-offs; once it is agreed, the TS turns it into a concrete build plan for
+one feature, and the test plan verifies all of it. Skip links the work does not need; a
+small feature may go straight from PRD to TS.
+
+RACI matrices, SOPs, and the portfolio → epic → story → task breakdown are
+not in this plugin. They come from the companion `delivery-ops` plugin.
+
 ## Common confusions
 
 **PRD vs BRD.** The BRD answers "why should the business fund this?" for a
@@ -61,6 +80,23 @@ must be approved by someone outside the team.
 loose. An SRS has numbered, verifiable requirements with traceability, for a
 contract or regulator. Do not write an SRS unless someone will trace against
 it.
+
+**PRD vs FS.** The PRD states the problem, the users, and the goals. The FS
+turns that into agreed behaviour: each function's flow, business rules,
+field validations, permissions by role, and acceptance criteria. Write an FS
+when business, design, QA, and engineering must sign off on behaviour before
+build, typically for ERP-style modules with many screens and rules.
+
+**FS vs SRS.** The FS is organised by screen and function, in business
+language, for stakeholders to agree. The SRS is organised as formal,
+numbered, verifiable requirements for a contract or regulator. Many teams
+need the FS and never an SRS.
+
+**TS vs design doc vs SDD.** The design doc proposes an approach and weighs
+alternatives. The TS is the build plan for one feature once the approach is
+settled: modules, endpoints, migrations, flags, tests, rollout, and tasks.
+The SDD is a formal description of the whole design. If reviewers would
+still argue about the approach, write the design doc first.
 
 **Design doc vs ADR.** The design doc is the proposal, written before the
 work, with alternatives, and reviewed. The ADR is the record of one decision,
@@ -97,6 +133,6 @@ architecture decision, write the ADR and link it from the notes.
 |---|---|
 | Bug fix | PR description; CHANGELOG entry if user-visible |
 | Small feature (days) | User stories with acceptance criteria; PR description |
-| Medium feature (weeks) | PRD; design doc if the approach is not obvious; test plan section in the PR or design doc |
+| Medium feature (weeks) | PRD; FS if several screens or business rules need sign-off; TS for the build plan; design doc if the approach is not obvious; test plan section in the PR or design doc |
 | Large feature or new service | PRD, design doc, ADRs, threat model if data or auth is involved, test plan, runbook, SLO, release plan |
 | New repository | README, CONTRIBUTING, SECURITY.md, CHANGELOG, PR template, issue forms, `docs/adr/` with ADR 0001 |

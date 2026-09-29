@@ -1,6 +1,6 @@
 ---
 name: dev-docs
-description: Use when the user asks to write, update, review, or organise software development documentation — a PRD, BRD, user stories, SRS, non-functional requirements, design doc or RFC, ADR, architecture (arc42, C4), API spec, data model, threat model, test plan, release checklist, runbook, postmortem, SLO, README, CONTRIBUTING, SECURITY.md, CHANGELOG, release notes, PR or issue templates, project charter, meeting notes, retro, or onboarding doc. Also use for "set up docs for this repo", "audit our docs", "we need to write this down", and "which document do I need?". Not for code comments or docstrings.
+description: Use when the user asks to write, update, review, or organise software development documentation — a PRD, BRD, user stories, functional spec (FS/FSD), SRS, non-functional requirements, technical spec (TS/TSD), design doc or RFC, ADR, architecture (arc42, C4), API spec, data model, threat model, test plan, release checklist, runbook, postmortem, SLO, README, CONTRIBUTING, SECURITY.md, CHANGELOG, release notes, PR or issue templates, project charter, meeting notes, retro, or onboarding doc. Also use for "set up docs for this repo", "audit our docs", "we need to write this down", and "which document do I need?". Not for code comments or docstrings.
 ---
 
 # Dev Docs
@@ -61,12 +61,19 @@ The full catalogue, with the basis of each template, is in
 | Group | Templates |
 |---|---|
 | Product | `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/prd.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/brd.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/user-stories.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/one-pager.md` |
-| Requirements | `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/srs.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/nfr.md` |
-| Design | `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/sdd.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/arc42.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/c4-diagrams.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/adr-nygard.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/adr-madr.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/design-doc.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/api-spec.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/data-model.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/threat-model.md` |
+| Requirements | `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/functional-spec.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/srs.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/nfr.md` |
+| Design | `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/technical-spec.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/sdd.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/arc42.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/c4-diagrams.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/adr-nygard.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/adr-madr.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/design-doc.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/api-spec.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/data-model.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/threat-model.md` |
 | Quality | `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/test-plan.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/test-case.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/release-checklist.md` |
 | Operations | `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/runbook.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/postmortem.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/oncall-handover.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/slo.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/release-plan.md` |
 | Repo | `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/readme.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/contributing.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/security.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/code-of-conduct.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/changelog.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/release-notes.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/pull-request.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/issue-bug.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/issue-feature.md` |
 | Project | `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/project-charter.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/meeting-notes.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/decision-log.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/retro.md`, `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/onboarding.md` |
+
+Documents chain in this order, each linking to the one before:
+PRD → FS (SRS if formal) → design doc/SDD → TS → test plan.
+
+The full RACI matrix, SOPs, and the portfolio → epic → story → task ticket
+breakdown come from the companion `delivery-ops` plugin, not from here. The
+project charter names the leads and points there.
 
 ## Reference index
 

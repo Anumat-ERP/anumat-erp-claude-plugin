@@ -1,7 +1,7 @@
 {
   "name": "dev-docs",
-  "description": "Write and maintain software development documentation from templates based on recognised standards and widely adopted conventions: PRDs, SRS, ADRs, design docs, API specs, test plans, runbooks, postmortems, and repo files.",
-  "version": "0.1.0",
+  "description": "Write and maintain software development documentation from templates based on recognised standards and widely adopted conventions: PRDs, functional and technical specs, SRS, ADRs, design docs, API specs, test plans, runbooks, postmortems, and repo files.",
+  "version": "0.2.0",
   "author": {
     "name": "Chamrong Thor",
     "email": "thorchamrong.dev@gmail.com"

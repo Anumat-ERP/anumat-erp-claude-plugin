@@ -9,6 +9,8 @@ against the standard itself.
 Each template starts with an HTML comment naming its basis and use. Remove
 that comment in the finished document; keep the status block.
 
+Documents chain in this order: PRD → FS (SRS if formal) → design doc/SDD → TS → test plan. Each links to the one before it.
+
 ## Product
 
 | Template | Basis | Use when |
@@ -22,6 +24,7 @@ that comment in the finished document; keep the status block.
 
 | Template | Basis | Use when |
 |---|---|---|
+| `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/functional-spec.md` | Adapted from common industry FSD practice; complements ISO/IEC/IEEE 29148 (see the SRS template) | Stakeholders need to agree what each screen and function does: flows, business rules, validations, permissions, and Given/When/Then acceptance criteria. Sits between the PRD and the SRS or TS |
 | `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/srs.md` | Based on the ISO/IEC/IEEE 29148:2018 SRS information items | Contractual, regulated, or large-system requirements that need IDs and traceability |
 | `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/nfr.md` | Organised by the ISO/IEC 25010 product quality characteristics | Stating measurable quality targets: performance, security, reliability, and the rest |
 
@@ -29,6 +32,7 @@ that comment in the finished document; keep the status block.
 
 | Template | Basis | Use when |
 |---|---|---|
+| `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/technical-spec.md` | Common engineering practice; no formal standard. Lighter than the SDD, more concrete than the design doc | Engineers need the concrete implementation plan for one feature or component: modules, API and schema changes, jobs, flags, tests, rollout, and a task breakdown for tickets |
 | `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/sdd.md` | Based on the IEEE 1016-2009 design viewpoints | A formal software design description is required (regulated, contractual, or large teams) |
 | `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/arc42.md` | Follows the 12-section arc42 template (arc42.org, CC BY-SA) | Documenting the architecture of a whole system, kept alive over years |
 | `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/c4-diagrams.md` | Simon Brown's C4 model (c4model.com), drawn in Mermaid | Drawing context, container, and component diagrams |
@@ -75,7 +79,7 @@ that comment in the finished document; keep the status block.
 
 | Template | Basis | Use when |
 |---|---|---|
-| `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/project-charter.md` | Adapted from the project charter concept in PMI's PMBOK Guide | Starting a project that needs a sponsor, a budget, and agreed scope |
+| `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/project-charter.md` | Adapted from the project charter concept in PMI's PMBOK Guide | Starting a project that needs a sponsor, a budget, and agreed scope. The full RACI matrix, SOPs, and ticket breakdown come from the companion `delivery-ops` plugin |
 | `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/meeting-notes.md` | Common practice | Recording a meeting's decisions and actions |
 | `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/decision-log.md` | Common practice; lighter than an ADR | Tracking many small project decisions in one place |
 | `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/templates/retro.md` | Common agile retrospective formats (start/stop/continue; what went well / what did not) | At the end of a sprint or project phase |

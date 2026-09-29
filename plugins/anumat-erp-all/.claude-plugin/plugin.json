@@ -1,7 +1,7 @@
 {
   "name": "anumat-erp-all",
-  "version": "0.1.0",
-  "description": "Installs every Anumat ERP plugin in one step: design-stack, monorepo-stack, dev-docs, security-audit, demo-storytelling, startup-infra and customer-discovery.",
+  "version": "0.2.0",
+  "description": "Installs every Anumat ERP plugin in one step: design-stack, monorepo-stack, dev-docs, delivery-ops, security-audit, demo-storytelling, startup-infra and customer-discovery.",
   "author": {
     "name": "Chamrong Thor",
     "email": "thorchamrong.dev@gmail.com"
@@ -13,6 +13,7 @@
     "design-stack",
     "monorepo-stack",
     "dev-docs",
+    "delivery-ops",
     "security-audit",
     "demo-storytelling",
     "startup-infra",

@@ -78,6 +78,10 @@ within what limits.>
 
 **Reporting:** <status report cadence, audience, format.>
 
+This table names the leads only. The full RACI matrix, the SOPs, and the
+portfolio → epic → story → task breakdown come from the companion
+`delivery-ops` plugin. Link them here once they exist.
+
 ## 8. Stakeholders
 
 | Stakeholder | Interest | How engaged |

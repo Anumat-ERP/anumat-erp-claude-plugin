@@ -64,8 +64,8 @@ production" does not.
 
 ## 5. Linked
 
-- [ ] Links to its parent and children: PRD to design doc to ADRs to
-      runbook, and back.
+- [ ] Links to its parent and children along the chain PRD → FS (SRS if formal) → design doc/SDD → TS → test plan, plus ADRs and runbooks,
+      and back.
 - [ ] Relative links inside the repo resolve.
 - [ ] `docs/README.md` lists it, if it is a new kind of document.
 
@@ -92,6 +92,8 @@ production" does not.
 |---|---|
 | PRD | Problem stated before solution; success metrics measurable; non-goals listed |
 | User stories | Each passes INVEST; each has Given/When/Then criteria including one failure case |
+| Functional spec | Every function has trigger, main and exception flows, a field validation table with error messages, permissions by role, and Given/When/Then criteria; traceability matrix has no blank cells |
+| Technical spec | Every module touched has an owner reviewer; migrations state online or windowed; each rollout step has a rollback; effort breakdown tasks are ticket-sized |
 | SRS / NFR | Each requirement has an ID, a priority, and a verification method |
 | ADR | One decision only; status set; consequences include the negative ones |
 | Design doc | Alternatives section is real, not a straw man; rollout and rollback present |

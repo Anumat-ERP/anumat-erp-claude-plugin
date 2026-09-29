@@ -11,10 +11,10 @@
   "plugins": [
     {
       "name": "anumat-erp-all",
-      "description": "Installs every Anumat ERP plugin in one step: design-stack, monorepo-stack, dev-docs, security-audit, demo-storytelling, startup-infra and customer-discovery.",
+      "description": "Installs every Anumat ERP plugin in one step: design-stack, monorepo-stack, dev-docs, delivery-ops, security-audit, demo-storytelling, startup-infra and customer-discovery.",
       "source": "./plugins/anumat-erp-all",
       "category": "productivity",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "author": {
         "name": "Chamrong Thor",
         "email": "thorchamrong.dev@gmail.com"
@@ -64,10 +64,10 @@
     },
     {
       "name": "dev-docs",
-      "description": "Write and maintain software development documentation from templates based on recognised standards and widely adopted conventions: PRDs, SRS, ADRs, design docs, API specs, test plans, runbooks, postmortems, and repo files.",
+      "description": "Write and maintain software development documentation from templates based on recognised standards and widely adopted conventions: PRDs, functional and technical specs, SRS, ADRs, design docs, API specs, test plans, runbooks, postmortems, and repo files.",
       "source": "./plugins/dev-docs",
       "category": "productivity",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "author": {
         "name": "Chamrong Thor",
         "email": "thorchamrong.dev@gmail.com"
@@ -80,6 +80,27 @@
         "srs",
         "runbook",
         "docs-as-code"
+      ]
+    },
+    {
+      "name": "delivery-ops",
+      "description": "Operating and delivery documentation for teams: SOPs and work instructions, RACI and escalation matrices, and work breakdown from portfolio to sub-task with Definition of Ready/Done, acceptance criteria, estimation, and Jira, Linear or GitHub Projects setup and CSV import.",
+      "source": "./plugins/delivery-ops",
+      "category": "productivity",
+      "version": "0.1.0",
+      "author": {
+        "name": "Chamrong Thor",
+        "email": "thorchamrong.dev@gmail.com"
+      },
+      "tags": [
+        "sop",
+        "raci",
+        "jira",
+        "epics",
+        "user-stories",
+        "backlog",
+        "definition-of-done",
+        "process"
       ]
     },
     {

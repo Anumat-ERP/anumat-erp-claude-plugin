@@ -27,11 +27,11 @@ difference in `docs/README.md`.
 │       └── config.yml
 └── docs/
     ├── README.md              index of this folder; start here
-    ├── product/               PRDs, BRDs, one-pagers, user stories
+    ├── product/               PRDs, BRDs, one-pagers, user stories, functional specs
     ├── requirements/          SRS, NFR specs
     ├── architecture/          arc42, C4 diagrams, SDD, data model, threat models
     ├── adr/                   one file per decision, numbered, never renumbered
-    ├── design/                design docs and RFCs
+    ├── design/                design docs, RFCs, technical specs
     ├── api/                   OpenAPI files and API prose
     ├── testing/               test plans, test cases, release checklists
     ├── operations/
@@ -56,6 +56,7 @@ Where files go per type:
 | BRD | `docs/product/` | `brd-<slug>.md` |
 | One-pager | `docs/product/` | `one-pager-<slug>.md` |
 | User stories | `docs/product/` or the issue tracker | `stories-<slug>.md` |
+| Functional spec (FS) | `docs/product/` | `fs-<slug>.md` |
 | SRS | `docs/requirements/` | `srs-<system>.md` |
 | NFR spec | `docs/requirements/` | `nfr-<system>.md` |
 | arc42 | `docs/architecture/` | `architecture.md` (or one file per section in a folder) |
@@ -65,6 +66,7 @@ Where files go per type:
 | Threat model | `docs/architecture/` | `threat-model-<scope>.md` |
 | ADR | `docs/adr/` | `NNNN-<short-title>.md`, e.g. `0007-use-postgres.md` |
 | Design doc / RFC | `docs/design/` | `NNNN-<slug>.md` or `<yyyy-mm>-<slug>.md` |
+| Technical spec (TS) | `docs/design/` | `ts-<slug>.md` |
 | API spec | `docs/api/` | `openapi.yaml` plus `<api>.md` |
 | Test plan | `docs/testing/` | `test-plan-<release-or-feature>.md` |
 | Test cases | `docs/testing/` | `tc-<area>.md` |

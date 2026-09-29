@@ -11,7 +11,8 @@ If the first word of the arguments names a type, match it to a template in
 `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/reference/catalogue.md`. Common
 aliases: `rfc` → design doc, `adr` → the repo's existing ADR format (Nygard
 if none), `madr` → MADR, `stories` → user stories, `pm` or `incident` →
-postmortem, `pr` → pull request template.
+postmortem, `pr` → pull request template, `fs` or `fsd` → functional spec, `ts` or
+`tsd` or `tech-spec` → technical spec.
 
 If no type is given, or the type does not fit the situation, use the decision
 table in `${CLAUDE_PLUGIN_ROOT}/skills/dev-docs/reference/choosing.md`.
@@ -62,7 +63,8 @@ Write the file. Then tell the user:
 - the path,
 - the type and why,
 - every `TBD` and assumption that needs their input, as a short list,
-- related documents they may need next (for example: a design doc usually
-  produces ADRs; a new alert needs a runbook).
+- related documents they may need next, following the chain PRD → FS (SRS if formal) → design doc/SDD → TS → test plan (for example: a PRD for a
+  multi-screen module usually needs an FS; a design doc usually produces
+  ADRs; a new alert needs a runbook).
 
 Do not commit.

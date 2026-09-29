@@ -1,7 +1,7 @@
 # anumat-erp-claude-plugin
 
 Claude Code plugins from the Anumat team, for the whole path from idea to
-paying customers: build it (monorepo, design, docs, security), ship it
+paying customers: build it (monorepo, design, docs, delivery, security), ship it
 (infrastructure from $0 upward), and sell it (demos, customer discovery).
 
 ## Install everything (two commands)
@@ -49,7 +49,8 @@ plugins it pulled in.
 
 | Plugin | For | Commands |
 |---|---|---|
-| **[dev-docs](plugins/dev-docs)** | Software development documents from 37 templates based on recognised standards: PRD, BRD, SRS (ISO/IEC/IEEE 29148), SDD (IEEE 1016), arc42, C4, ADR (Nygard, MADR), design doc, OpenAPI spec, test plan (29119-3), runbook, postmortem, SLO, README, CONTRIBUTING, SECURITY, CHANGELOG and more | `/dev-docs:new` `:setup` `:audit` `:list` |
+| **[dev-docs](plugins/dev-docs)** | Software development documents from 39 templates based on recognised standards: PRD, BRD, functional spec, technical spec, SRS (ISO/IEC/IEEE 29148), SDD (IEEE 1016), arc42, C4, ADR (Nygard, MADR), design doc, OpenAPI spec, test plan (29119-3), runbook, postmortem, SLO, README, CONTRIBUTING, SECURITY, CHANGELOG and more | `/dev-docs:new` `:setup` `:audit` `:list` |
+| **[delivery-ops](plugins/delivery-ops)** | How the team delivers: SOPs and work instructions, RACI (and RASCI, DACI), escalation matrix, the portfolio → initiative → epic → story → task breakdown with Definition of Ready and Done, acceptance criteria, estimation, and Jira / Linear / GitHub Projects setup with CSV import | `/delivery-ops:sop` `:raci` `:breakdown` `:ticket` `:jira-setup` `:dor-dod` |
 | **[security-audit](plugins/security-audit)** | Defensive audits of your own software: scope, framework choice (OWASP ASVS, Top 10, API, MASVS, CWE, NIST CSF and SSDF, CIS, SLSA, SOC 2 / ISO 27001 mapping), STRIDE threat model, review checklists, findings with CVSS, fix plan, retest, report | `/security-audit:plan` `:threat-model` `:run` `:fix` `:verify` `:report` |
 | **[demo-storytelling](plugins/demo-storytelling)** | Demos and pitches: user stories into a narrative, storytelling frameworks, a T-7 to T-0 prep plan, a timed run-of-show, how to speak, a warm-up for voice, body and tech, Q&A, recovering on stage, retro | `/demo-storytelling:plan` `:story` `:script` `:rehearse` `:warmup` `:qa` `:retro` |
 | **[startup-infra](plugins/startup-infra)** | Infrastructure from a $0 hackathon to scale, stage by stage: free-tier stacks, exit triggers, cost guardrails, reliability, migrations between stages | `/startup-infra:assess` `:plan` `:stack` `:cost` `:migrate` `:checklist` |
@@ -59,13 +60,15 @@ plugins it pulled in.
 | **[anumat-erp-all](plugins/anumat-erp-all)** | Bundle: installs all of the above | — |
 
 You don't have to type the commands: each plugin's skill triggers from plain
-requests like "write a PRD for bulk export", "audit this repo's security",
+requests like "write a PRD for bulk export", "break this spec into Jira epics and stories",
+"write the SOP for refunds", "audit this repo's security",
 "help me prepare the demo", "what should we host this on for free" or "how do
 I find my first customers".
 
 They are designed to meet. `monorepo-stack` creates `packages/ui` and its
-Storybook, and `design-stack` reads them. `dev-docs` writes the threat model
-and `security-audit` works from it. `customer-discovery` finds the story, and
+Storybook, and `design-stack` reads them. `dev-docs` writes the PRD and specs,
+`delivery-ops` breaks them into epics, stories and tickets, and
+`security-audit` works from the threat model. `customer-discovery` finds the story, and
 `demo-storytelling` tells it.
 
 ## Adding a plugin

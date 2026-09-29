@@ -13,6 +13,8 @@ and a place in the repo.
 ## What you can ask
 
 - "Write a PRD for bulk invoice export."
+- "Write the functional spec for bulk export."
+- "Write the technical spec for the export job."
 - "We need an ADR for moving to PostgreSQL."
 - "Write the postmortem for yesterday's checkout outage."
 - "Set up docs for this repo."
@@ -41,18 +43,28 @@ REVIEW    → run the review checklist before calling it done
 
 ## Templates
 
-37 templates, each starting with a header comment that names its basis and
+39 templates, each starting with a header comment that names its basis and
 when to use it.
 
 | Group | Templates | Main bases |
 |---|---|---|
 | Product | PRD, BRD, user stories, one-pager | Common practice; BABOK concepts; INVEST; Given/When/Then (BDD) |
-| Requirements | SRS, non-functional requirements | ISO/IEC/IEEE 29148 structure; ISO/IEC 25010 quality characteristics |
-| Design | SDD, arc42, C4 diagrams, ADR (Nygard), ADR (MADR), design doc / RFC, API spec, data model, threat model | IEEE 1016 viewpoints; arc42; C4 model; Nygard; MADR 4; Google-style design doc; OpenAPI 3.1; STRIDE |
+| Requirements | Functional spec (FS), SRS, non-functional requirements | Common FSD practice; ISO/IEC/IEEE 29148 structure; ISO/IEC 25010 quality characteristics |
+| Design | Technical spec (TS), SDD, arc42, C4 diagrams, ADR (Nygard), ADR (MADR), design doc / RFC, API spec, data model, threat model | IEEE 1016 viewpoints; arc42; C4 model; Nygard; MADR 4; Google-style design doc; common engineering practice (TS); OpenAPI 3.1; STRIDE |
 | Quality | Test plan, test case, release checklist | ISO/IEC/IEEE 29119-3 structure |
 | Operations | Runbook, postmortem, on-call handover, SLO, release plan | Google SRE book and workbook practice |
 | Repo | README, CONTRIBUTING, SECURITY.md, CODE_OF_CONDUCT pointer, CHANGELOG, release notes, PR template, bug and feature issue forms | GitHub community files; coordinated disclosure; Contributor Covenant (linked, not copied); Keep a Changelog; SemVer |
 | Project | Project charter, meeting notes, decision log, retro, handover / onboarding | PMBOK charter concept; common agile practice |
+
+### The document chain
+
+```
+PRD → FS (SRS if formal) → design doc/SDD → TS → test plan
+```
+
+The PRD says why and for whom; the FS says what each screen and function
+does; the SRS formalises it when a contract needs it; the TS says how one
+feature is built.
 
 ### On standards
 
@@ -76,10 +88,17 @@ standard itself.
 
 ## What ships
 
-**1 skill, 7 reference files, 37 templates, 4 commands.**
+**1 skill, 7 reference files, 39 templates, 4 commands.**
 
 The skill body is a router under the 150-line cap. Detail lives in the
 reference and template files, loaded only when needed.
+
+## Companion plugin
+
+The `delivery-ops` plugin owns the RACI matrix, SOPs, and the portfolio →
+epic → story → task hierarchy. dev-docs writes the documents; delivery-ops
+turns them into owned, tracked work. The project charter and the technical
+spec's effort breakdown hand over to it.
 
 ## Out of scope
 
