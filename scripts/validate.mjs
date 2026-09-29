@@ -39,10 +39,10 @@ const REF_PATTERN = /\$\{CLAUDE_PLUGIN_ROOT\}\/[A-Za-z0-9._/-]+\.md/g;
  * skill, and resolve to nothing at runtime.
  */
 const BARE_REF_PATTERN =
-  /(?<![\w/$}-])(?:reference|patterns|systems)\/[A-Za-z0-9._-]+\.md/g;
+  /(?<![\w/$}-])(?:reference|patterns|systems|templates)\/[A-Za-z0-9._-]+\.md/g;
 
 /** Directories inside a skill that hold routed content files. */
-const CONTENT_DIRS = ['reference', 'patterns', 'systems'];
+const CONTENT_DIRS = ['reference', 'patterns', 'systems', 'templates'];
 
 /**
  * Vocabulary that belongs to the frontend-design skill, not this one.
@@ -92,6 +92,16 @@ const mdFiles = (path) =>
         )
         .sort()
     : [];
+
+/** A plugin whose manifest lists dependencies and ships no skills or commands. */
+function isBundle(pdir) {
+  try {
+    const m = JSON.parse(readFileSync(join(pdir, '.claude-plugin', 'plugin.json'), 'utf8'));
+    return Array.isArray(m.dependencies) && m.dependencies.length > 0 && !isDir(join(pdir, 'skills')) && !isDir(join(pdir, 'commands'));
+  } catch {
+    return false;
+  }
+}
 
 function loadJson(path, check) {
   if (!existsSync(path)) {
@@ -167,6 +177,23 @@ function checkManifests() {
     }
   }
 
+  // A bundle's dependencies must be plugins this marketplace ships.
+  const names = new Set((market.plugins ?? []).map((p) => p.name));
+  for (const pdir of pluginDirs) {
+    const path = join(pdir, '.claude-plugin', 'plugin.json');
+    if (!existsSync(path)) continue;
+    let deps = [];
+    try {
+      deps = JSON.parse(readFileSync(path, 'utf8')).dependencies ?? [];
+    } catch {
+      continue;
+    }
+    for (const dep of deps) {
+      const depName = typeof dep === 'string' ? dep.split('@')[0] : dep?.name;
+      if (!names.has(depName)) fail(check, `${rel(path)} depends on ${JSON.stringify(depName)}, which is not in marketplace.json`);
+    }
+  }
+
   if (clean(check)) ok(check);
   return pluginDirs;
 }
@@ -230,6 +257,8 @@ function checkSkills(pluginDirs) {
   for (const pdir of pluginDirs) {
     const skillsRoot = join(pdir, 'skills');
     if (!isDir(skillsRoot)) {
+      // A bundle plugin only lists dependencies; it has no skills of its own.
+      if (isBundle(pdir)) continue;
       fail(fmCheck, `${rel(pdir)} has no skills/ directory`);
       continue;
     }

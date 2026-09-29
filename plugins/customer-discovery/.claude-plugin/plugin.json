@@ -1,0 +1,12 @@
+{
+  "name": "customer-discovery",
+  "description": "Customer development for founding teams: find the first people to talk to, run honest interviews, test the riskiest assumptions with real commitments, and turn what you learn into persevere, pivot or kill decisions.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Chamrong Thor",
+    "email": "thorchamrong.dev@gmail.com"
+  },
+  "homepage": "https://github.com/Anumat-ERP/anumat-erp-claude-plugin/tree/main/plugins/customer-discovery",
+  "repository": "https://github.com/Anumat-ERP/anumat-erp-claude-plugin",
+  "license": "MIT"
+}

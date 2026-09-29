@@ -1,0 +1,12 @@
+{
+  "name": "dev-docs",
+  "description": "Write and maintain software development documentation from templates based on recognised standards and widely adopted conventions: PRDs, SRS, ADRs, design docs, API specs, test plans, runbooks, postmortems, and repo files.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Chamrong Thor",
+    "email": "thorchamrong.dev@gmail.com"
+  },
+  "homepage": "https://github.com/Anumat-ERP/anumat-erp-claude-plugin/tree/main/plugins/dev-docs",
+  "repository": "https://github.com/Anumat-ERP/anumat-erp-claude-plugin",
+  "license": "MIT"
+}

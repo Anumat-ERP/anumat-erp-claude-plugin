@@ -19,6 +19,15 @@ jobs:
           node-version: 22
       - name: Marketplace and plugin structure
         run: node scripts/validate.mjs
+      - name: Claude Code manifest checks and bundle install
+        run: |
+          npm install -g @anthropic-ai/claude-code
+          claude plugin validate --strict .
+          for d in plugins/*/; do claude plugin validate --strict "$d"; done
+          export CLAUDE_CONFIG_DIR="$(mktemp -d)"
+          claude plugin marketplace add "$PWD"
+          claude plugin install anumat-erp-all@anumat-erp
+          claude plugin list
       - name: monorepo-stack unit tests
         run: node plugins/monorepo-stack/scripts/test.mjs
 

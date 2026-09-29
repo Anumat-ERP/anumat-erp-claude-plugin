@@ -1,0 +1,12 @@
+{
+  "name": "security-audit",
+  "description": "Defensive security audit workflow for your own software: scope the audit, pick the framework (OWASP ASVS, Top 10, NIST, CIS, SLSA), review the code, record findings, fix and verify them, and write the report.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Chamrong Thor",
+    "email": "thorchamrong.dev@gmail.com"
+  },
+  "homepage": "https://github.com/Anumat-ERP/anumat-erp-claude-plugin/tree/main/plugins/security-audit",
+  "repository": "https://github.com/Anumat-ERP/anumat-erp-claude-plugin",
+  "license": "MIT"
+}

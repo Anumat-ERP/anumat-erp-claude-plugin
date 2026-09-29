@@ -6,10 +6,24 @@
     "email": "thorchamrong.dev@gmail.com"
   },
   "metadata": {
-    "description": "Claude Code plugins for building Anumat: design research and evidence, and the Bun + Turborepo monorepo stack the Anumat repos use.",
-    "homepage": "https://github.com/Anumat-ERP/anumat-erp-claude-plugin"
+    "description": "Claude Code plugins from the Anumat team: build (monorepo, design, docs, security), ship (infra from $0), and sell (demos, customer discovery)."
   },
   "plugins": [
+    {
+      "name": "anumat-erp-all",
+      "description": "Installs every Anumat ERP plugin in one step: design-stack, monorepo-stack, dev-docs, security-audit, demo-storytelling, startup-infra and customer-discovery.",
+      "source": "./plugins/anumat-erp-all",
+      "category": "productivity",
+      "version": "0.1.0",
+      "author": {
+        "name": "Chamrong Thor",
+        "email": "thorchamrong.dev@gmail.com"
+      },
+      "tags": [
+        "bundle",
+        "all"
+      ]
+    },
     {
       "name": "design-stack",
       "description": "Design research and evidence layer for UI work: canonical screen playbooks, design-system selection, and a hard gate on interface states.",
@@ -46,6 +60,103 @@
         "storybook",
         "scaffolding",
         "nextjs"
+      ]
+    },
+    {
+      "name": "dev-docs",
+      "description": "Write and maintain software development documentation from templates based on recognised standards and widely adopted conventions: PRDs, SRS, ADRs, design docs, API specs, test plans, runbooks, postmortems, and repo files.",
+      "source": "./plugins/dev-docs",
+      "category": "productivity",
+      "version": "0.1.0",
+      "author": {
+        "name": "Chamrong Thor",
+        "email": "thorchamrong.dev@gmail.com"
+      },
+      "tags": [
+        "documentation",
+        "templates",
+        "prd",
+        "adr",
+        "srs",
+        "runbook",
+        "docs-as-code"
+      ]
+    },
+    {
+      "name": "security-audit",
+      "description": "Defensive security audit workflow for your own software: scope the audit, pick the framework (OWASP ASVS, Top 10, NIST, CIS, SLSA), review the code, record findings, fix and verify them, and write the report.",
+      "source": "./plugins/security-audit",
+      "category": "security",
+      "version": "0.1.0",
+      "author": {
+        "name": "Chamrong Thor",
+        "email": "thorchamrong.dev@gmail.com"
+      },
+      "tags": [
+        "security",
+        "audit",
+        "owasp",
+        "asvs",
+        "nist",
+        "threat-model",
+        "appsec"
+      ]
+    },
+    {
+      "name": "demo-storytelling",
+      "description": "Prepare and deliver a product demo or pitch: turn user stories into a narrative, pick a storytelling framework, plan a T-7 to T-0 countdown, write a timed run-of-show, rehearse, warm up voice, body and tech, handle Q&A and on-stage failures, and run a retro.",
+      "source": "./plugins/demo-storytelling",
+      "category": "productivity",
+      "version": "0.1.0",
+      "author": {
+        "name": "Chamrong Thor",
+        "email": "thorchamrong.dev@gmail.com"
+      },
+      "tags": [
+        "demo",
+        "pitch",
+        "storytelling",
+        "hackathon",
+        "presentation",
+        "public-speaking"
+      ]
+    },
+    {
+      "name": "startup-infra",
+      "description": "Stage-by-stage infrastructure framework for a product that starts at a hackathon on $0 and grows: free-tier stack picks, cliff and lock-in avoidance, cost guardrails, what to add at each stage, exit triggers, and migration plans between stages.",
+      "source": "./plugins/startup-infra",
+      "category": "productivity",
+      "version": "0.1.0",
+      "author": {
+        "name": "Chamrong Thor",
+        "email": "thorchamrong.dev@gmail.com"
+      },
+      "tags": [
+        "infrastructure",
+        "devops",
+        "free-tier",
+        "scaling",
+        "cost",
+        "startup"
+      ]
+    },
+    {
+      "name": "customer-discovery",
+      "description": "Customer development for founding teams: find the first people to talk to, run honest interviews, test the riskiest assumptions with real commitments, and turn what you learn into persevere, pivot or kill decisions.",
+      "source": "./plugins/customer-discovery",
+      "category": "productivity",
+      "version": "0.1.0",
+      "author": {
+        "name": "Chamrong Thor",
+        "email": "thorchamrong.dev@gmail.com"
+      },
+      "tags": [
+        "customer-discovery",
+        "interviews",
+        "validation",
+        "mom-test",
+        "jtbd",
+        "product-market-fit"
       ]
     }
   ]

@@ -1,0 +1,12 @@
+{
+  "name": "startup-infra",
+  "description": "Stage-by-stage infrastructure framework for a product that starts at a hackathon on $0 and grows: free-tier stack picks, cliff and lock-in avoidance, cost guardrails, what to add at each stage, exit triggers, and migration plans between stages.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Chamrong Thor",
+    "email": "thorchamrong.dev@gmail.com"
+  },
+  "homepage": "https://github.com/Anumat-ERP/anumat-erp-claude-plugin/tree/main/plugins/startup-infra",
+  "repository": "https://github.com/Anumat-ERP/anumat-erp-claude-plugin",
+  "license": "MIT"
+}

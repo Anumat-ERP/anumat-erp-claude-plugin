@@ -1,0 +1,21 @@
+{
+  "name": "anumat-erp-all",
+  "version": "0.1.0",
+  "description": "Installs every Anumat ERP plugin in one step: design-stack, monorepo-stack, dev-docs, security-audit, demo-storytelling, startup-infra and customer-discovery.",
+  "author": {
+    "name": "Chamrong Thor",
+    "email": "thorchamrong.dev@gmail.com"
+  },
+  "homepage": "https://github.com/Anumat-ERP/anumat-erp-claude-plugin",
+  "repository": "https://github.com/Anumat-ERP/anumat-erp-claude-plugin",
+  "license": "MIT",
+  "dependencies": [
+    "design-stack",
+    "monorepo-stack",
+    "dev-docs",
+    "security-audit",
+    "demo-storytelling",
+    "startup-infra",
+    "customer-discovery"
+  ]
+}

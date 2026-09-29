@@ -1,0 +1,12 @@
+{
+  "name": "demo-storytelling",
+  "description": "Prepare and deliver a product demo or pitch: turn user stories into a narrative, pick a storytelling framework, plan a T-7 to T-0 countdown, write a timed run-of-show, rehearse, warm up voice, body and tech, handle Q&A and on-stage failures, and run a retro.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Chamrong Thor",
+    "email": "thorchamrong.dev@gmail.com"
+  },
+  "homepage": "https://github.com/Anumat-ERP/anumat-erp-claude-plugin/tree/main/plugins/demo-storytelling",
+  "repository": "https://github.com/Anumat-ERP/anumat-erp-claude-plugin",
+  "license": "MIT"
+}
